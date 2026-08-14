@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prier avec les écritures</title>
+    <style>
+        /* --- RESET ET STYLES DE BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background-color: #f4f8fc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .blog-container {
+            max-width: 850px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.08);
+            padding: 30px 35px 45px;
+            transition: box-shadow 0.2s;
+        }
+
+        /* --- EN-TÊTE --- */
+        .blog-header {
+            text-align: center;
+            border-bottom: 1px solid #e9f0f5;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .blog-header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #0b2b44;
+        }
+
+        .blog-header h1 span {
+            color: #2a7fa5;
+        }
+
+        .blog-header .subtitle {
+            font-size: 1rem;
+            color: #4b6a82;
+            margin-top: 6px;
+            font-weight: 300;
+        }
+
+        /* --- NAVIGATION (SÉLECTEURS) --- */
+        .navigation {
+            background-color: #f0f6fc;
+            border-radius: 16px;
+            padding: 20px 20px 12px;
+            margin-bottom: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 25px;
+            align-items: flex-end;
+        }
+
+        .nav-group {
+            flex: 1 1 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nav-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #3d637b;
+        }
+
+        .nav-group select {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #cfdee9;
+            background-color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1a3346;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233d637b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            transition: border 0.15s, box-shadow 0.15s;
+        }
+
+        .nav-group select:focus {
+            outline: none;
+            border-color: #2a7fa5;
+            box-shadow: 0 0 0 3px rgba(42, 127, 165, 0.15);
+        }
+
+        .nav-group select option {
+            font-weight: 400;
+        }
+
+        /* --- ZONE DE CONTENU --- */
+        .content-area {
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .theme-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .theme-part {
+            font-size: 0.9rem;
+            color: #557b95;
+            font-weight: 500;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: #e4eef6;
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
+
+        .content-section {
+            margin-top: 28px;
+        }
+
+        .content-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1d4b6b;
+            margin-bottom: 10px;
+            border-left: 4px solid #2a7fa5;
+            padding-left: 14px;
+        }
+
+        .content-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #235c7c;
+            margin: 18px 0 6px 0;
+        }
+
+        .content-section p {
+            margin-bottom: 12px;
+            color: #1f3b50;
+        }
+
+        .content-section .verses {
+            background-color: #f5faff;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            border-left: 4px solid #6d9bb8;
+            margin-bottom: 10px;
+        }
+
+        .content-section .verses strong {
+            font-weight: 600;
+            color: #0e3f5a;
+        }
+
+        .content-section .block-text {
+            background: #f8fcff;
+            padding: 16px 22px;
+            border-radius: 16px;
+            border: 1px solid #e3eef7;
+            margin: 14px 0 10px 0;
+            font-size: 0.98rem;
+        }
+
+        .prayer-box {
+            background: #f0f7fd;
+            border-radius: 16px;
+            padding: 18px 24px;
+            border-left: 6px solid #2a7fa5;
+            margin: 18px 0 8px 0;
+            font-style: italic;
+        }
+
+        .spiritual-progress {
+            background: #e9f1f8;
+            border-radius: 14px;
+            padding: 14px 22px;
+            margin-top: 22px;
+            border-left: 4px solid #6d9bb8;
+            font-weight: 450;
+            color: #1b4057;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px 40px;
+            color: #597d97;
+        }
+
+        .empty-state svg {
+            display: block;
+            margin: 0 auto 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: #2a5c79;
+        }
+
+        /* --- ANIMATION --- */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 650px) {
+            .blog-container {
+                padding: 18px 16px 30px;
+            }
+
+            .blog-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+                padding: 18px 16px 12px;
+            }
+
+            .nav-group {
+                flex: 1 1 auto;
+                width: 100%;
+            }
+
+            .theme-title {
+                font-size: 1.5rem;
+            }
+
+            .content-section .block-text {
+                padding: 12px 16px;
+            }
+
+            .prayer-box {
+                padding: 14px 18px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            body {
+                padding: 10px;
+            }
+            .blog-container {
+                padding: 12px 10px 24px;
+                border-radius: 18px;
+            }
+            .blog-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="blog-container">
+    <!-- EN-TÊTE -->
+    <header class="blog-header">
+        <h1>🙏 <span>Prier</span> avec les écritures</h1>
+        <p class="subtitle">Confessions, proclamations et prières fondées sur la Parole</p>
+    </header>
+
+    <!-- NAVIGATION -->
+    <div class="navigation">
+        <div class="nav-group">
+            <label for="part-select">Partie</label>
+            <select id="part-select">
+                <option value="">— Choisissez une partie —</option>
+            </select>
+        </div>
+        <div class="nav-group">
+            <label for="theme-select">Thème</label>
+            <select id="theme-select" disabled>
+                <option value="">Sélectionnez d'abord une partie</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ZONE DE CONTENU -->
+    <div class="content-area" id="content-area">
+        <div class="empty-state">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#597d97" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16v16H4z" />
+                <path d="M9 9h6v6H9z" />
+                <path d="M9 15l2-2 2 2" />
+                <path d="M9 9l2 2 2-2" />
+            </svg>
+            <h3>Sélectionnez une partie et un thème</h3>
+            <p style="margin-top:8px; max-width:360px; margin-left:auto; margin-right:auto;">Choisissez une partie dans le menu déroulant, puis un thème pour afficher les confessions, proclamations et prières.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // --------------------------------------------------------------
+        // 1. DONNÉES : structure complète extraite du PDF
+        //    (Parties -> Thèmes -> contenu)
+        // --------------------------------------------------------------
+        const DATA = {
+            "PARTIE I — MA POSITION EN CHRIST": {
+                "THÈME 1 — JÉSUS DOMINE SUR TOUTE CHOSE, DONC JE RÈGNE AVEC LUI": {
+                    versets: "Éphésiens 1:19-23 • Matthieu 28:18 • Philippiens 2:9-11 • Colossiens 1:15-18 • Colossiens 2:10 • Hébreux 2:8 • Psaume 110:1",
+                    confession: "Père céleste. Je confesse aujourd'hui que Jésus-Christ est mon Seigneur et mon Roi. Je crois qu'il est ressuscité, glorifié et assis à ta droite, au-dessus de toute domination, de toute autorité, de toute puissance et de tout nom qui peut être nommé. Je confesse que tout pouvoir dans le ciel et sur la terre lui appartient. Je crois que rien n'échappe à son autorité : ni les puissances visibles, ni les puissances invisibles, ni les circonstances, ni les maladies, ni les œuvres des ténèbres. Je reconnais que Jésus est le Chef suprême de l'Église et que je fais partie de son Corps. Je place volontairement toute ma vie sous son règne parfait.",
+                    declaration: "Je déclare que Jésus règne souverainement sur ma vie. Je déclare que toute autorité spirituelle, toute domination, toute puissance des ténèbres et toute œuvre de l'ennemi sont soumises au Seigneur Jésus-Christ. Je déclare que je n'appartiens plus au royaume des ténèbres, mais au Royaume du Fils bien-aimé de Dieu. Je déclare que Jésus dirige mes pensées, mes paroles, mes décisions, ma santé, ma famille, mon travail, mon ministère et mon avenir. Je refuse de laisser la peur, le doute ou les circonstances gouverner ma vie. Je choisis de vivre sous l'autorité parfaite du Roi des rois.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que Jésus est Seigneur sur mon esprit, mon âme et mon corps. Je proclame que toute puissance contraire à la volonté de Dieu est soumise au nom de Jésus. Je proclame que le règne de Christ s'établit dans ma maison, dans ma famille, dans mon travail et dans tout ce que Dieu m'a confié. Je proclame que les œuvres des ténèbres reculent devant l'autorité du Seigneur Jésus-Christ. Je proclame que le Royaume de Dieu se manifeste dans ma vie avec justice, paix et joie par le Saint-Esprit. Je marche dans la victoire du Christ ressuscité.",
+                    priere: "Seigneur Jésus, Je t'adore et je reconnais que tu es le Roi des rois et le Seigneur des seigneurs. Merci parce que toute autorité t'a été donnée dans le ciel et sur la terre. Merci parce que rien n'est au-dessus de toi. Apprends-moi à vivre chaque jour dans la conscience de ton autorité. Que ton règne gouverne mes pensées, mes paroles, mes décisions et toutes les dimensions de ma vie. Je renonce à toute peur, à toute inquiétude et à toute indépendance. Je choisis de marcher sous ton gouvernement parfait. Que ton Royaume vienne et que ta volonté soit faite dans ma vie comme au ciel.",
+                    progression: "Je cesse de regarder à la grandeur de mes problèmes. J'apprends à contempler la grandeur du Christ glorifié. Plus je connais son autorité, plus je marche dans la paix, la foi et l'assurance."
+                },
+                "THÈME 2 — JE SUIS EN CHRIST": {
+                    versets: "2 Corinthiens 5:17 • Romains 8:1 • Éphésiens 1:3 • Éphésiens 2:10 • Colossiens 2:9-10 • Jean 15:4-5 • Galates 3:26-29",
+                    confession: "Père céleste, Je confesse que je suis en Jésus-Christ. Je ne suis plus défini par mon passé, mes échecs, mes blessures ou mes anciennes chaînes. En Christ, je suis une nouvelle créature. Je confesse que mon identité est désormais fondée sur ce que Jésus a accompli à la croix et non sur ce que j'étais autrefois. Je crois que je suis accepté, aimé, pardonné, justifié et béni en Christ. Je demeure en lui et il demeure en moi.",
+                    declaration: "Je déclare que ma vie est désormais cachée en Christ. Je déclare que les choses anciennes sont passées. Je déclare que Dieu renouvelle continuellement mon intelligence, mon caractère et ma manière de vivre.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que mon identité est en Christ seul. Je proclame que toute parole contraire à ce que Dieu déclare sur moi est réduite au silence. Je proclame que les œuvres anciennes perdent toute influence sur ma vie. Je proclame que je marche dans la nouveauté de vie. Je proclame que la grâce de Dieu produit en moi une transformation continuelle. Je proclame que rien ne pourra me séparer de l'amour de Dieu manifesté en Jésus-Christ.",
+                    priere: "Père céleste, Merci parce que tu m'as placé en Jésus-Christ. Merci parce que je ne suis plus esclave du péché, de la honte ou de la condamnation. Aide-moi à vivre chaque jour selon ma véritable identité. Renouvelle ma pensée afin que je voie ma vie comme toi tu la vois. Apprends-moi à demeurer en Christ en toute circonstance. Que toute ma vie reflète désormais la beauté de Jésus. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de chercher mon identité dans le regard des autres. Je découvre progressivement que ma véritable identité est en Jésus-Christ. Chaque jour, je pense davantage comme un enfant de Dieu et je marche selon la réalité de ce que je suis en Christ."
+                },
+                "THÈME 3 — CHRIST EST EN MOI": {
+                    versets: "Galates 2:20 • Colossiens 1:27 • Jean 14:20-23 • Jean 15:4-5 • Romains 8:9-11 • 1 Jean 4:4",
+                    confession: "Père céleste, Je confesse que Jésus-Christ habite en moi par son Esprit. Je ne suis jamais seul, car le Roi des rois demeure en moi. Je confesse que Christ est ma vie, ma paix, ma sagesse, ma force, ma sainteté et mon espérance. Je crois que celui qui habite en moi est infiniment plus grand que celui qui est dans le monde. Je confesse que la présence de Dieu remplit mon esprit, renouvelle mon âme et vivifie mon corps.",
+                    declaration: "Je déclare que Christ vit en moi. Sa vie remplace mes faiblesses. Sa paix remplace mon inquiétude. Sa joie remplace ma tristesse. Sa force remplace mon découragement. Sa lumière chasse toutes les ténèbres. Je déclare que les pensées de Christ deviennent mes pensées. Ses paroles remplissent ma bouche. Son amour remplit mon cœur. Sa puissance agit continuellement dans ma vie.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que la présence de Christ en moi chasse toute œuvre des ténèbres. Aucune peur, aucune oppression, aucune puissance démoniaque ne peut demeurer là où habite Jésus-Christ. Je proclame que mon esprit appartient à Dieu. Mon âme appartient à Dieu. Mon corps appartient à Dieu. Ma maison appartient à Dieu. Ma famille appartient à Dieu. Je proclame que Christ règne en moi et que toute puissance ennemie doit s'incliner devant sa présence.",
+                    priere: "Seigneur Jésus. Merci d'avoir choisi de demeurer en moi. Que ta présence transforme chaque domaine de ma vie. Remplis mes pensées de ta sagesse. Remplis mon cœur de ton amour. Que mes paroles reflètent les tiennes. Que mes actions glorifient ton nom. Apprends-moi à vivre chaque jour conscient que tu demeures en moi.",
+                    progression: "Je ne vis plus selon mes propres forces. Je développe chaque jour la conscience de la présence permanente de Jésus-Christ en moi. Je laisse son caractère remplacer progressivement le mien."
+                },
+                "THÈME 4 — MA VIE EST CACHÉE AVEC CHRIST EN DIEU": {
+                    versets: "Colossiens 3:1-4 • Psaume 91 • Jean 10:27-30 • Ésaïe 54:17 • Psaume 27:5",
+                    confession: "Père céleste, Je confesse que ma vie est cachée avec Christ en toi. Tu es mon refuge, ma forteresse et mon protecteur. Je ne suis pas abandonné aux attaques de l'ennemi. Je demeure sous l'abri du Très-Haut. Je suis gardé par la puissance de Dieu.",
+                    declaration: "Je déclare que Dieu est mon refuge. Je suis caché en Christ. Je suis couvert par sa grâce. Je suis protégé par sa puissance. Aucune arme forgée contre moi ne prospérera. Aucun projet des ténèbres ne pourra annuler les plans de Dieu pour ma vie. Je demeure dans la sécurité que Dieu m'accorde.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que ma vie est cachée avec Christ en Dieu. Je proclame que toute attaque contre ma vie rencontre la protection du Seigneur. Je proclame que Dieu envoie ses anges autour de moi. Je proclame que ma famille demeure sous la couverture du sang de Jésus-Christ. Je proclame que le Seigneur est mon rempart et ma forteresse.",
+                    priere: "Père céleste, Merci parce que tu me caches en Christ. Merci parce que tu veilles sur moi jour et nuit. Apprends-moi à vivre dans la confiance plutôt que dans la peur. Que je demeure constamment sous ton autorité et dans l'obéissance à ta Parole. Je place ma vie, ma famille et tout ce qui m'appartient sous ta protection. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de vivre dans la crainte. Je développe une confiance profonde dans la fidélité de Dieu."
+                },
+                "THÈME 5 — JE SUIS ASSIS AVEC CHRIST DANS LES LIEUX CÉLESTES": {
+                    versets: "Éphésiens 2:4-7 • Éphésiens 1:19-23 • Colossiens 3:1-3 • Romains 8:37 • Hébreux 4:14-16",
+                    confession: "Père céleste, Je confesse que, par ta grâce, tu m'as fait revivre avec Christ, ressusciter avec lui et asseoir avec lui dans les lieux célestes.",
+                    declaration: "Je déclare que je suis assis avec Christ dans les lieux célestes. Je déclare que je ne combats pas pour obtenir la victoire, mais depuis la victoire déjà remportée par Jésus. Je déclare que les réalités du ciel influencent ma manière de penser, de parler et d'agir. Je refuse de vivre dominé par la peur, le découragement ou les circonstances. Je garde les yeux fixés sur Jésus-Christ, mon Seigneur glorifié.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que ma position en Christ est au-dessus de toute domination, de toute autorité et de toute puissance des ténèbres. Je proclame que les mensonges de l'ennemi ne détermineront jamais mon identité. Je proclame que les réalités célestes gouvernent ma vie. Je proclame que la victoire de Christ est ma victoire. Je marche dans l'autorité que Dieu m'accorde en Jésus-Christ.",
+                    priere: "Père céleste, Merci parce que tu m'as fait asseoir avec Christ dans les lieux célestes. Apprends-moi à vivre chaque jour selon cette position spirituelle. Que je ne laisse jamais les circonstances définir ma foi. Donne-moi de voir chaque situation avec les yeux de la foi. Que ma vie reflète la paix, la confiance et l'autorité de Jésus-Christ.",
+                    progression: "Je passe d'une vision terrestre à une vision céleste. J'apprends à regarder les difficultés depuis la victoire de Christ plutôt que de regarder Christ depuis mes difficultés."
+                },
+                "THÈME 6 — JE SUIS MEMBRE DU CORPS DE CHRIST": {
+                    versets: "1 Corinthiens 12:12-27 • Romains 12:4-5 • Éphésiens 4:15-16 • Colossiens 1:18 • Éphésiens 5:29-30",
+                    confession: "Père céleste, Je confesse que je fais partie du Corps de Christ. Jésus est ma tête, et je suis uni à lui. Je ne suis pas isolé ni abandonné, mais intégré à la famille de Dieu.",
+                    declaration: "Je déclare que je suis un membre vivant du Corps de Christ. Je déclare que je marche dans l'unité, l'amour et la communion avec mes frères et sœurs. Je refuse toute division, toute jalousie, toute amertume et tout esprit d'indépendance. Je déclare que Dieu utilise ma vie pour bénir son peuple. Je grandis jusqu'à ressembler davantage à Jésus-Christ.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que je suis solidement attaché à Christ, la Tête de l'Église. Je proclame que toute tentative de division ou d'isolement est brisée. Je proclame que l'amour de Dieu règne dans mes relations. Je proclame que le Saint-Esprit fait de moi un instrument de paix, d'encouragement et d'édification. Je proclame que je porte du fruit pour la gloire de Dieu.",
+                    priere: "Seigneur Jésus, Merci de m'avoir intégré à ton Corps. Apprends-moi à aimer ton Église comme tu l'aimes. Aide-moi à servir avec humilité, fidélité et amour. Fais grandir en moi les dons que tu m'as confiés afin que je contribue à l'édification de ton peuple. Que toute ma vie glorifie le Chef de l'Église, Jésus-Christ. Amen.",
+                    progression: "Je cesse de vivre une foi centrée sur moi-même. Je découvre la joie de grandir avec le peuple de Dieu et de servir selon les dons que le Seigneur m'a confiés."
+                },
+                "THÈME 7 — JÉSUS EST LE CEP, JE SUIS LE SARMENT": {
+                    versets: "Jean 15:1-8 • Colossiens 2:6-7 • Psaume 1:1-3 • Jérémie 17:7-8 • Galates 5:22-23",
+                    confession: "Père céleste, Je confesse que Jésus-Christ est le véritable Cep et que je suis un sarment attaché à lui. Je reconnais que je ne peux rien faire sans lui. Toute ma vie spirituelle dépend de ma communion avec Jésus. Je crois que sa vie coule en moi et produit son fruit.",
+                    declaration: "Je déclare que la vie de Christ circule continuellement en moi. Je déclare que sa paix remplit mon cœur. Sa joie renouvelle mes forces. Sa sagesse dirige mes décisions. Sa sainteté transforme mon caractère. Son amour remplit mes relations. Je porte un fruit abondant parce que je demeure en lui.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que rien ne pourra me séparer de la vie qui vient de mon Seigneur. Je proclame que toute sécheresse spirituelle cède la place à la vie abondante de Christ. Je proclame que le Saint-Esprit fait grandir en moi le fruit de l'amour, de la joie, de la paix, de la patience, de la bonté, de la bienveillance, de la fidélité, de la douceur et de la maîtrise de soi. Je proclame que je porterai beaucoup de fruit pour la gloire de Dieu.",
+                    priere: "Seigneur Jésus, Merci d'être le véritable Cep. Apprends-moi à demeurer constamment attaché à toi. Émonde tout ce qui empêche ton fruit de grandir dans ma vie. Que ta vie circule librement en moi. Fais de moi un disciple fidèle qui glorifie le Père par une vie abondamment fructueuse. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de compter sur mes propres capacités. Je développe une dépendance quotidienne envers Jésus-Christ. Je découvre que la véritable fécondité naît d'une communion constante avec mon Sauveur."
+                },
+                "THÈME 8 — JE DEMEURE EN CHRIST ET SA VIE COULE EN MOI": {
+                    versets: "Jean 15:4-10 • Jean 6:56-57 • Galates 2:20 • Colossiens 2:6-7 • Éphésiens 3:16-19",
+                    confession: "Père céleste, Je confesse que je demeure en Jésus-Christ et que Jésus demeure en moi.",
+                    declaration: "Je déclare que la vie de Jésus coule abondamment en moi. Sa grâce renouvelle mes forces. Sa sainteté transforme mon caractère. Son amour gouverne mes relations. Sa puissance vivifie mon esprit, mon âme et mon corps. Je demeure enraciné dans sa Parole et je porte un fruit abondant.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que rien ne pourra interrompre ma communion avec mon Seigneur. Je rejette toute sécheresse spirituelle. Je proclame que la vie de Christ chasse toute faiblesse spirituelle, toute stérilité et tout découragement. Je proclame que je porterai beaucoup de fruit pour la gloire de Dieu.",
+                    priere: "Seigneur Jésus, Merci parce que tu me fais participer à ta propre vie. Apprends-moi à demeurer constamment en toi. Que ton Esprit renouvelle chaque jour ma communion avec toi. Que tout ce qui ne vient pas de toi soit retranché de ma vie. Fais de moi un disciple qui demeure fidèle jusqu'à la fin. Au nom de Jésus-Christ.",
+                    progression: "Je cesse de vivre une relation occasionnelle avec Jésus. Je développe une communion permanente avec lui afin que toute ma vie soit alimentée par sa présence."
+                },
+                "THÈME 9 — JE SUIS UN AVEC CHRIST": {
+                    versets: "Jean 17:20-23 • Jean 17:26 • Colossiens 3:3-4 • Galates 2:20 • Romains 6:5",
+                    confession: "Père céleste, Je confesse que tu m'as uni à ton Fils. Je crois que cette union est une œuvre de ta grâce. Je ne vis plus indépendamment de Christ. Ma vie est désormais liée à la sienne. Je désire marcher dans cette communion profonde afin que le monde voie Jésus à travers moi.",
+                    declaration: "Je déclare que mon identité est inséparable de celle de Jésus-Christ. Je déclare que ses pensées deviennent mes pensées. Son amour façonne mon cœur. Son obéissance inspire ma marche. Sa victoire devient ma victoire. Je grandis chaque jour dans la ressemblance de mon Seigneur.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que rien ne pourra me séparer de mon union avec Christ. Je rejette toute influence qui cherche à m'éloigner de mon Seigneur. Je proclame que mon cœur demeure attaché à Jésus. Je marche dans l'intimité avec mon Sauveur.",
+                    priere: "Père céleste, Merci de m'avoir uni à Jésus-Christ. Fais grandir cette communion jour après jour. Que ma vie révèle toujours davantage son caractère. Que je demeure fidèle jusqu'au bout. Amen.",
+                    progression: "Je ne considère plus Jésus comme seulement mon Sauveur. Je le connais comme mon Seigneur, mon modèle, ma vie. Je grandis dans une relation d'intimité avec lui."
+                },
+                "THÈME 10 — JE SUIS UN ESPRIT AVEC LE SEIGNEUR": {
+                    versets: "1 Corinthiens 6:17 • Jean 14:16-17 • Romains 8:14-16 • Ézéchiel 36:26-27 • Galates 4:6",
+                    confession: "Père céleste, Je confesse que celui qui s'attache au Seigneur est un seul esprit avec lui.",
+                    declaration: "Je déclare que mon esprit est vivant pour Dieu. Je déclare que le Saint-Esprit éclaire mon intelligence. Il dirige mes décisions. Il produit en moi la sainteté. Je refuse toute domination de la chair. Je choisis de vivre sous la conduite du Saint-Esprit.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que mon esprit est consacré au Seigneur. Je rejette toute influence qui voudrait souiller ma communion avec Dieu. Je proclame que le Saint-Esprit gouverne ma vie. Je marche dans la liberté des enfants de Dieu.",
+                    priere: "Père céleste, Merci de m'avoir donné ton Esprit. Apprends-moi à reconnaître sa voix. Rends mon cœur sensible à sa direction. Que je marche constamment selon ton Esprit. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de laisser mes émotions conduire ma vie. J'apprends à être dirigé quotidiennement par le Saint-Esprit."
+                }
+            },
+            "PARTIE II — MON IDENTITÉ EN CHRIST": {
+                "THÈME 11 — JE SUIS ENFANT DE DIEU": {
+                    versets: "Jean 1:12-13 • Romains 8:14-17 • Galates 3:26 • 1 Jean 3:1-2 • Éphésiens 1:5",
+                    confession: "Père céleste, Je confesse que tu m'as adopté en Jésus-Christ. Je ne suis plus étranger à ton alliance. Je suis ton enfant bien-aimé. Je peux m'approcher de toi avec confiance. Tu es mon Père, et je suis ton fils. Je reçois ton amour, ta correction, ta protection et ton héritage.",
+                    declaration: "Je déclare que je ne suis plus orphelin. Je suis aimé du Père. Je suis accepté dans sa famille. Je bénéficie de son héritage. Je marche dans la dignité d'un enfant de Dieu. Je reflète le caractère de mon Père céleste.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute pensée de rejet, d'abandon ou d'orphelinat est détruite. Je proclame que Dieu est mon Père. Je proclame que je suis accueilli dans sa présence. Je proclame que rien ne pourra m'arracher de son amour.",
+                    priere: "Père céleste, Merci de m'avoir adopté. Apprends-moi à vivre chaque jour comme ton enfant. Que je marche dans la confiance, l'obéissance et l'amour. Que ma vie honore ton nom. Amen.",
+                    progression: "Je cesse de vivre comme un esclave cherchant à mériter l'amour de Dieu. J'apprends à vivre dans la sécurité et la joie d'un enfant aimé par son Père."
+                },
+                "THÈME 12 — JE SUIS NÉ DE DIEU": {
+                    versets: "Jean 3:3-8 • Jacques 1:18 • Tite 3:5",
+                    confession: "Père céleste, Je confesse que je suis né de toi par la foi en Jésus-Christ. Je ne vis plus seulement d'une naissance naturelle. J'ai reçu une naissance spirituelle qui fait de moi une nouvelle personne. Ta vie est désormais en moi. Je t'appartiens pour toujours.",
+                    declaration: "Je déclare que la nature de Dieu agit en moi. Je déclare que je grandis dans la sainteté. Je refuse de retourner aux œuvres de mon ancienne vie. Je marche dans la nouveauté que Dieu produit en moi. Je suis conduit par le Saint-Esprit.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que je suis né de Dieu. Je proclame que le péché ne dominera pas sur moi. Je proclame que la puissance de la nouvelle naissance transforme toute ma vie. Je proclame que je marche chaque jour dans la victoire que Dieu accorde à ceux qui sont nés de lui.",
+                    priere: "Père céleste, Merci pour la nouvelle naissance. Continue ton œuvre en moi. Fais grandir ma foi. Affermis mon obéissance. Que ma vie témoigne de la transformation que tu as accomplie en moi. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de me définir selon mon ancienne nature. Je vis désormais selon la vie nouvelle que Dieu a fait naître en moi."
+                },
+                "THÈME 13 — JE SUIS UNE NOUVELLE CRÉATURE": {
+                    versets: "2 Corinthiens 5:17 • Éphésiens 4:22-24 • Colossiens 3:9-10",
+                    confession: "Père céleste, Je confesse qu'en Jésus-Christ je suis une nouvelle créature. Les choses anciennes sont passées. Tu as renouvelé mon cœur, mon esprit et ma destinée. Je ne suis plus défini par mon passé, mes péchés, mes échecs ou mes blessures. Je crois que ton œuvre de transformation se poursuit chaque jour dans ma vie.",
+                    declaration: "Je déclare que je marche dans la nouveauté de vie. Je rejette les habitudes de mon ancienne nature. Je revêts l'homme nouveau créé selon Dieu. Je renouvelle mes pensées par la Parole de Dieu. Je marche chaque jour davantage à l'image de Jésus-Christ.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que mon ancienne vie n'a plus d'autorité sur moi. Je proclame que toute chaîne du passé est brisée. Je proclame que la grâce de Dieu produit une transformation complète dans mon esprit, mon âme et mon corps. Je marche dans la liberté de la nouvelle création.",
+                    priere: "Père céleste, Merci pour la nouvelle naissance. Continue ton œuvre de sanctification dans ma vie. Apprends-moi à abandonner chaque jour ce qui appartient à l'ancien homme. Que le caractère de Christ soit de plus en plus visible en moi. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de vivre selon les réflexes de mon ancienne nature. J'apprends à vivre conformément à la nouvelle identité que Dieu m'a donnée en Christ."
+                },
+                "THÈME 14 — JE SUIS LA JUSTICE DE DIEU EN CHRIST": {
+                    versets: "2 Corinthiens 5:21 • Romains 3:21-26 • Romains 5:17 • Philippiens 3:8-9",
+                    confession: "Père céleste, Je confesse que ma justice ne vient pas de mes œuvres, mais de Jésus-Christ. Par la foi, tu m'as déclaré juste. Je ne vis plus sous la condamnation. Je suis revêtu de la justice de Christ. Je peux m'approcher de toi avec assurance.",
+                    declaration: "Je déclare que je suis accepté devant Dieu grâce à l'œuvre parfaite de Jésus. Je refuse toute accusation qui contredit ta Parole. Je marche dans la justice, l'intégrité et la sainteté. Je reflète la justice de Christ dans mes pensées, mes paroles et mes actions.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute condamnation est annulée. Je proclame que le sang de Jésus parle en ma faveur. Je proclame que je tiens ferme devant Dieu, revêtu de la justice de Christ. Je marche avec assurance dans la présence du Père.",
+                    priere: "Père céleste, Merci parce que tu m'as justifié gratuitement par ta grâce. Aide-moi à vivre d'une manière digne de cette justice. Que ma conduite glorifie ton nom. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse d'essayer de mériter l'amour de Dieu. Je vis dans la reconnaissance pour la justice que Christ m'a donnée."
+                },
+                "THÈME 15 — JE SUIS SAINT ET BIEN-AIMÉ": {
+                    versets: "Colossiens 3:12 • Éphésiens 1:4 • 1 Pierre 1:15-16 • Romains 1:7 • Jude 1",
+                    confession: "Père céleste, Je confesse que tu m'as mis à part pour toi. Je suis ton enfant bien-aimé. Tu m'appelles à vivre dans la sainteté. Je crois que ton Esprit me sanctifie chaque jour. Je désire te ressembler dans toutes mes pensées et dans toutes mes actions.",
+                    declaration: "Je déclare que je marche dans la sainteté. Je rejette toute souillure du péché. Je revêts la compassion, la bonté, l'humilité, la douceur et la patience. Je manifeste l'amour de Dieu autour de moi.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que je suis consacré au Seigneur. Je proclame que le péché ne dominera pas sur moi. Je proclame que ma vie glorifie Dieu. Je marche dans la lumière de Christ.",
+                    priere: "Père céleste, Merci de m'avoir appelé à être saint. Continue ton œuvre de purification en moi. Donne-moi un cœur sensible à ta voix. Que ma vie soit un témoignage vivant de ton amour. Amen.",
+                    progression: "Je comprends que la sainteté n'est pas un poids, mais le fruit d'une communion vivante avec Dieu."
+                },
+                "THÈME 16 — JE SUIS CHOISI PAR DIEU": {
+                    versets: "Jean 15:16 • Éphésiens 1:4-5 • 1 Pierre 2:9 • Colossiens 3:12 • 2 Thessaloniciens 2:13",
+                    confession: "Père céleste, Je confesse que tu m'as choisi par amour. Tu m'as appelé avant même que je puisse te chercher. Tu m'as mis à part pour accomplir les œuvres que tu as préparées d'avance. Je crois que ma vie a un but dans ton Royaume.",
+                    declaration: "Je déclare que je ne suis ni oublié ni rejeté. Je suis choisi par Dieu. Je marche dans la vocation qu'il a préparée pour moi. Je refuse le découragement et le sentiment d'inutilité. Je porte du fruit pour sa gloire.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que les projets de Dieu s'accompliront dans ma vie. Je proclame qu'aucune opposition ne pourra empêcher l'appel de Dieu. Je proclame que le Seigneur ouvre les portes qu'il a préparées pour moi.",
+                    priere: "Père céleste, Merci de m'avoir choisi. Donne-moi de marcher fidèlement dans l'appel que tu m'as confié. Rends-moi disponible pour accomplir ta volonté. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de comparer ma vie à celle des autres. Je découvre avec joie la vocation particulière que Dieu m'a confiée."
+                },
+                "THÈME 17 — JE SUIS ADOPTÉ PAR LE PÈRE": {
+                    versets: "Romains 8:15-17 • Galates 4:4-7 • Éphésiens 1:5 • Jean 1:12 • 1 Jean 3:1",
+                    confession: "Père céleste, Je confesse que tu m'as adopté en Jésus-Christ. Je ne suis plus un étranger. Je fais partie de ta famille. Je peux t'appeler avec confiance : « Abba, Père ». Je reçois ton amour, ton héritage et ta discipline avec reconnaissance.",
+                    declaration: "Je déclare que je vis dans la sécurité de l'amour du Père. Je refuse tout esprit d'esclavage, de rejet ou d'abandon. Je marche dans la liberté et la dignité d'un enfant adopté par Dieu. Je reflète le caractère de mon Père céleste.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que je suis pleinement accueilli dans la famille de Dieu. Je proclame que toute accusation qui prétend que je suis abandonné est réduite au silence. Je proclame que le Père veille sur moi, me conduit et me garde. Je demeure dans son amour.",
+                    priere: "Père céleste, Merci de m'avoir adopté par Jésus-Christ. Apprends-moi à vivre chaque jour dans la confiance envers toi. Que je connaisse toujours davantage ton cœur de Père. Fais de moi un reflet fidèle de ton amour.",
+                    progression: "Je cesse de vivre comme un serviteur qui craint d'être rejeté. J'apprends à vivre comme un fils aimé, accueilli et établi dans la maison du Père."
+                },
+                "THÈME 18 — JE SUIS HÉRITIER DE DIEU ET COHÉRITIER AVEC CHRIST": {
+                    versets: "Romains 8:16-17 • Galates 4:6-7 • Éphésiens 1:11-14 • 1 Pierre 1:3-4 • Tite 3:7",
+                    confession: "Père céleste, Je confesse que je suis ton enfant et que, par Jésus-Christ, je suis devenu héritier de tes promesses. Je ne suis pas privé de ton héritage, car tu m'as donné accès aux richesses de ta grâce. Je confesse que mon héritage ne dépend pas des richesses de ce monde, mais de ce que tu as préparé pour ceux qui t'appartiennent. Je suis cohéritier avec Christ.",
+                    declaration: "Je déclare que je marche dans l'héritage que Dieu m'a donné. Je déclare que je reçois les bénédictions spirituelles qui sont en Christ. Je ne vis pas comme quelqu'un abandonné ou dépourvu, mais comme un enfant du Roi. Je déclare que la grâce, la paix, la sagesse et la présence de Dieu sont mon héritage quotidien.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que je suis héritier de Dieu. Je proclame que toutes les promesses divines m'appartiennent en Christ. Je proclame que les bénédictions spirituelles et la vie éternelle sont mon héritage. Je proclame que rien ne pourra me voler ce que Dieu a préparé pour moi.",
+                    priere: "Père céleste, Merci parce que tu m'as adopté et que tu m'as donné un héritage éternel. Aide-moi à vivre dans la réalité de ce que tu as préparé pour moi. Que je ne cherche pas seulement tes bénédictions, mais que je désire avant tout ta présence. Apprends-moi à être un bon administrateur de ce que tu me confies. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je passe d'une mentalité de manque à une conscience d'héritier. Je découvre que ma véritable richesse se trouve en Dieu et dans ma relation avec Christ."
+                },
+                "THÈME 19 — MA CITOYENNETÉ EST DANS LE CIEL": {
+                    versets: "Philippiens 3:20 • Éphésiens 2:19 • Hébreux 12:22-24 • Colossiens 3:1-2 • Jean 14:1-3",
+                    confession: "Père céleste. Je confesse que ma véritable citoyenneté est dans les cieux. Je suis un étranger sur cette terre, appelé à représenter ton Royaume. Je ne suis pas limité aux réalités visibles, car mon espérance est éternelle. Je crois que ma destinée finale est auprès de toi avec Jésus-Christ.",
+                    declaration: "Je déclare que mes pensées sont tournées vers les réalités célestes. Je refuse de vivre uniquement selon les valeurs de ce monde. Je marche comme un ambassadeur du Royaume de Dieu. Mes paroles, mes choix et mon comportement reflètent mon appartenance au ciel.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que mon identité première est en Dieu. Je proclame que les ténèbres de ce monde ne définiront pas ma destinée. Je proclame que je représente le Royaume de Dieu partout où je vais. Je proclame que mon avenir est assuré en Christ.",
+                    priere: "Père céleste, Merci parce que tu as préparé pour moi une demeure éternelle. Aide-moi à vivre sur cette terre avec une vision du ciel. Que mes actions témoignent de ton Royaume. Fais de moi un fidèle représentant de Jésus-Christ. Amen.",
+                    progression: "Je cesse d'être attaché uniquement aux choses temporaires. Je développe une perspective éternelle dans ma manière de vivre."
+                }
+            },
+            "PARTIE III — LE SANG, LA CROIX ET LE RACHAT": {
+                "THÈME 20 — LE SANG DE JÉSUS ME RACHÈTE": {
+                    versets: "1 Pierre 1:18-19 • Éphésiens 1:7 • Apocalypse 5:9 • Actes 20:28 • Hébreux 9:12",
+                    confession: "Père céleste. Je confesse que j'ai été racheté par le sang précieux de Jésus-Christ. Je n'appartiens plus au péché ni aux ténèbres. Le prix de mon rachat a été payé parfaitement par le sacrifice de ton Fils. Je crois que le sang de Jésus a une valeur éternelle et qu'il m'a acquis pour Dieu.",
+                    declaration: "Je déclare que je suis racheté, restauré et appartenant à Dieu. Je déclare que mon esprit, mon âme et mon corps appartiennent au Seigneur. Je ne suis plus esclave du passé. Je marche dans la liberté que Jésus a obtenue pour moi.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que le sang de Jésus a annulé toute dette spirituelle contre moi. Je proclame que toute accusation perd son pouvoir devant l'œuvre parfaite de la croix. Je proclame que j'appartiens à Jésus-Christ. Je proclame que ma vie est consacrée au Seigneur.",
+                    priere: "Seigneur Jésus. Merci pour ton sang versé pour mon salut. Merci parce que tu m'as racheté à un prix immense. Aide-moi à vivre comme une personne appartenant totalement à Dieu. Que ma vie honore le sacrifice que tu as accompli pour moi. Amen.",
+                    progression: "Je passe d'une conscience de culpabilité à une conscience de rachat. Je découvre la valeur que Dieu m'accorde à travers le sacrifice de Jésus."
+                },
+                "THÈME 21 — LE SANG DE JÉSUS ME PURIFIE": {
+                    versets: "1 Jean 1:7 • Hébreux 9:14 • Hébreux 10:19-22 • Apocalypse 1:5 • Éphésiens 5:25-27",
+                    confession: "Père céleste, Je confesse que le sang de Jésus me purifie de tout péché. Je ne suis pas seulement pardonné extérieurement, mais ma conscience est purifiée devant toi. Je crois que le sacrifice de Jésus est suffisant pour me rendre libre et m'approcher de ta présence.",
+                    declaration: "Je déclare que je suis lavé par le sang de Jésus. Je déclare que la honte, la culpabilité et la condamnation n'ont plus de pouvoir sur moi. Je marche dans la lumière de Dieu. Je vis dans la pureté que Christ produit en moi.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute souillure du passé est effacée par le sang de Jésus. Je proclame que toute accusation de l'ennemi est vaincue. Je proclame que ma conscience est libérée pour servir le Dieu vivant. Je marche dans la sainteté et la liberté.",
+                    priere: "Père céleste. Merci pour le sang précieux de Jésus. Merci parce que tu m'as purifié et restauré. Aide-moi à demeurer dans ta lumière. Que ma vie reflète la pureté et l'amour de Christ. Amen.",
+                    progression: "Je ne vis plus dans la culpabilité du passé. Je vis dans la grâce, la purification et la communion avec Dieu."
+                },
+                "THÈME 22 — LE SANG DE JÉSUS PARLE EN MA FAVEUR": {
+                    versets: "Hébreux 12:24 • Romains 8:33-34 • Apocalypse 12:10-11",
+                    confession: "Père céleste, Je confesse que le sang de Jésus parle en ma faveur. Je crois que l'œuvre accomplie par Jésus à la croix est plus puissante que toute accusation.",
+                    declaration: "Je déclare que la voix du sang de Jésus est plus forte que la voix de la condamnation. Je déclare que mes fautes ne sont pas mon identité. Je déclare que Dieu me voit à travers l'œuvre parfaite de Christ. Je marche dans la grâce, la confiance et l'assurance devant Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute accusation de l'ennemi est réduite au silence. Je proclame que le sang de Jésus témoigne de mon pardon, de ma restauration et de mon appartenance à Dieu. Je proclame que je suis justifié par la grâce de Dieu. Je proclame que rien ne peut m'arracher de la main du Seigneur.",
+                    priere: "Père céleste. Merci parce que Jésus est mon avocat et mon intercesseur. Merci parce que son sang parle mieux que mes erreurs. Aide-moi à vivre dans la vérité de ton pardon. Que je marche toujours avec un cœur humble et reconnaissant. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je quitte une vie dominée par la culpabilité pour entrer dans une vie fondée sur la grâce. Je comprends que mon assurance vient de Christ et non de ma perfection personnelle."
+                },
+                "THÈME 23 — JE VAINCS PAR LE SANG DE JÉSUS": {
+                    versets: "Apocalypse 12:11 • Colossiens 2:15 • Hébreux 2:14-15 • Luc 10:19 • Romains 8:37",
+                    confession: "Père céleste, Je confesse que la victoire appartient à Jésus-Christ. Par son sang versé et son sacrifice parfait, il a vaincu les puissances des ténèbres. Je crois que je participe à sa victoire parce que je lui appartiens. Je ne combats pas seul : Christ combat avec moi et pour moi.",
+                    declaration: "Je déclare que je suis victorieux en Jésus-Christ. Je déclare que le sang de Jésus me rappelle mon alliance avec Dieu. Je refuse la peur, le découragement et l'intimidation. Je marche dans la victoire de la croix.",
+                    proclamation: "Au nom puissant de Jésus-Christ. Je proclame que les œuvres des ténèbres sont vaincues par l'autorité de Jésus. Je proclame que toute oppression qui s'oppose à la volonté de Dieu doit reculer. Je proclame que je suis plus que vainqueur par celui qui m'a aimé. Je proclame que la victoire de Christ se manifeste dans ma vie.",
+                    priere: "Seigneur Jésus. Merci pour ta victoire obtenue à la croix. Merci parce que tu as dépouillé les puissances ennemies. Apprends-moi à marcher chaque jour dans cette victoire. Donne-moi une foi ferme et un cœur rempli de confiance. Amen.",
+                    progression: "Je cesse de vivre comme une victime. Je découvre que je suis appelé à vivre dans la victoire acquise par Jésus-Christ."
+                },
+                "THÈME 24 — LE SANG DE JÉSUS ME SANCTIFIE": {
+                    versets: "Hébreux 13:12 • Hébreux 10:10 • 1 Corinthiens 6:11 • 1 Pierre 1:2 • Romains 6:19",
+                    confession: "Père céleste, Je confesse que je suis sanctifié par le sang de Jésus-Christ. Je suis mis à part pour toi. Je reconnais que ma sainteté ne vient pas seulement de mes efforts, mais de l'œuvre de Christ et de l'action du Saint-Esprit. Je suis appelé à refléter ton caractère.",
+                    declaration: "Je déclare que ma vie appartient au Seigneur. Je déclare que mes pensées, mes paroles et mes actions sont consacrées à Dieu. Je rejette ce qui m'éloigne de sa volonté. Je marche dans la pureté, l'amour et l'obéissance.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que le sang de Jésus me sépare des œuvres des ténèbres. Je proclame que toute souillure perd son pouvoir sur moi. Je proclame que le Saint-Esprit me transforme jour après jour. Je proclame que ma vie glorifie Dieu.",
+                    priere: "Père céleste. Merci parce que Jésus m'a sanctifié par son sacrifice. Purifie continuellement mon cœur. Aide-moi à vivre d'une manière digne de mon appel. Que ma vie soit un témoignage de ta sainteté. Amen.",
+                    progression: "Je comprends que la sainteté n'est pas seulement éviter le mal, mais appartenir entièrement à Dieu. Je progresse dans une vie consacrée à Christ."
+                },
+                "THÈME 25 — LA CROIX DE CHRIST A ANNULÉ MA CONDAMNATION": {
+                    versets: "Colossiens 2:13-15 • Romains 8:1 • Galates 3:13 • Ésaïe 53:5 • Jean 19:30",
+                    confession: "Père céleste, Je confesse que Jésus-Christ a porté ma condamnation à la croix. L'acte qui me condamnait a été effacé par son sacrifice. Je ne suis plus sous le jugement, mais sous la grâce. Je crois que Jésus a payé entièrement le prix de mon salut.",
+                    declaration: "Je déclare que je suis libre de toute condamnation. Je déclare que l'œuvre de la croix est parfaite et suffisante. Je déclare que la justice de Dieu m'a été donnée gratuitement en Jésus-Christ. Je marche dans la liberté des enfants de Dieu.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute accusation contraire à l'œuvre de la croix est annulée. Je proclame que toute culpabilité qui m'empêche d'avancer est brisée. Je proclame que Jésus a remporté la victoire sur le péché et les puissances ennemies. Je marche dans la liberté des enfants de Dieu.",
+                    priere: "Seigneur Jésus, Merci pour la croix. Merci d'avoir porté ce que je ne pouvais pas porter. Merci d'avoir pris ma condamnation afin de me donner ta vie. Aide-moi à vivre chaque jour dans la réalité de ton sacrifice. Que ma vie soit une réponse d'amour et de reconnaissance envers toi. Amen.",
+                    progression: "Je passe de la culpabilité à la liberté. Je ne regarde plus seulement ce dont j'ai été délivré, mais ce à quoi Christ m'appelle désormais."
+                },
+                "THÈME 26 — MON VIEIL HOMME A ÉTÉ CRUCIFIÉ AVEC CHRIST": {
+                    versets: "Romains 6:6-7 • Galates 2:20 • Galates 5:24 • Éphésiens 4:22-24 • Colossiens 3:3-10",
+                    confession: "Père céleste, Je confesse que mon vieil homme a été crucifié avec Christ. Je crois que Jésus a mis fin à la domination de mon ancienne nature. Je ne suis plus esclave du péché ni prisonnier de mes anciennes habitudes.",
+                    declaration: "Je déclare que mon ancienne nature n'est plus mon maître. Je déclare que je suis une nouvelle personne en Jésus-Christ. Je renonce aux anciennes pensées, aux anciennes pratiques et aux anciens désirs qui ne glorifient pas Dieu. Je revêts l'homme nouveau créé selon Dieu dans la justice et la sainteté.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que le péché n'a plus de pouvoir absolu sur ma vie. Je proclame que les anciennes chaînes sont brisées par la puissance de la croix. Je proclame que ma liberté en Christ est une réalité spirituelle. Je proclame que je marche dans la victoire de Jésus ressuscité.",
+                    priere: "Seigneur Jésus, Merci parce que tu as porté mon ancienne vie à la croix. Aide-moi à ne pas retourner à ce que tu as vaincu. Renouvelle mon intelligence et transforme mes désirs. Que ma vie manifeste toujours davantage ta nature. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de lutter pour changer uniquement par mes propres forces. Je m'appuie sur l'œuvre accomplie par Christ et je laisse le Saint-Esprit transformer ma vie."
+                },
+                "THÈME 27 — JE SUIS MORT AU PÉCHÉ ET VIVANT POUR DIEU": {
+                    versets: "Romains 6:8-14 • Romains 6:22-23 • Colossiens 3:1-5 • 1 Pierre 2:24 • Galates 5:16",
+                    confession: "Père céleste, Je confesse qu'en Christ je suis mort au péché et vivant pour toi. Le péché ne définit plus mon identité.",
+                    declaration: "Je déclare que je suis vivant pour Dieu. Je déclare que mes pensées appartiennent au Seigneur. Mon corps appartient à Dieu. Mes paroles appartiennent à Dieu. Mes actions sont consacrées à Dieu. Je marche selon l'Esprit.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute domination du péché est brisée. Je proclame que je ne suis plus esclave de mes désirs anciens. Je proclame que la vie de Christ produit en moi une nouvelle manière de vivre. Je proclame que la sainteté de Dieu se manifeste dans mon quotidien.",
+                    priere: "Père céleste, Merci parce que tu m'as rendu libre. Apprends-moi à considérer les choses d'en haut. Que mes choix reflètent mon appartenance à Christ. Fortifie-moi pour marcher dans l'obéissance. Amen.",
+                    progression: "Je passe d'une vie centrée sur mes désirs à une vie consacrée aux desseins de Dieu."
+                },
+                "THÈME 28 — CHRIST A DÉPOUILLÉ LES PUISSANCES DES TÉNÈBRES": {
+                    versets: "Colossiens 2:15 • Hébreux 2:14-15 • Éphésiens 1:20-23 • 1 Jean 3:8",
+                    confession: "Père céleste, Je confesse que Jésus-Christ a remporté une victoire totale sur les puissances des ténèbres. Par sa croix, il a désarmé les dominations et les autorités.",
+                    declaration: "Je déclare que je ne suis plus sous la domination des ténèbres. Je déclare que Jésus est mon Seigneur et mon Libérateur. Je refuse la peur des puissances spirituelles. Je marche dans la lumière, la vérité et la victoire de Christ.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute puissance qui s'oppose à Dieu est vaincue par l'autorité de Jésus. Je proclame que la croix a triomphé. Je proclame que les œuvres du diable sont détruites dans ma vie. Je proclame que le règne de Christ s'établit en moi.",
+                    priere: "Seigneur Jésus, Merci pour ta victoire parfaite. Merci parce que tu as vaincu les puissances ennemies. Apprends-moi à vivre dans cette réalité avec foi et humilité. Que ta lumière règne dans tous les domaines de ma vie. Amen.",
+                    progression: "Je passe d'une conscience de la puissance de l'ennemi à une conscience supérieure de la victoire de Christ."
+                }
+            },
+            "PARTIE IV — AUTORITÉ, VICTOIRE ET DÉLIVRANCE": {
+                "THÈME 29 — SATAN EST SOUS LES PIEDS DE JÉSUS ET SOUS LES MIENS EN CHRIST": {
+                    versets: "Psaume 110:1 • Éphésiens 1:20-23 • Romains 16:20 • Luc 10:19 • Éphésiens 2:6",
+                    confession: "Père céleste, Je confesse que Jésus-Christ est élevé au-dessus de toute puissance. Tout ennemi est placé sous ses pieds. Je crois qu'étant uni à Christ, je participe à sa victoire. Je ne combats pas depuis une position d'infériorité, mais depuis la position que Dieu m'a donnée en Jésus.",
+                    declaration: "Je déclare que Jésus est Seigneur au-dessus de toute puissance. Je déclare que l'ennemi n'a pas le dernier mot sur ma vie. Je déclare que je marche dans l'autorité reçue de Christ. Je refuse la peur, l'intimidation et le découragement.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute œuvre de l'ennemi est soumise à l'autorité de Christ. Je proclame que toute oppression contraire à la volonté de Dieu doit reculer. Je proclame que je marche dans la victoire du Seigneur. Je proclame que le Royaume de Dieu avance dans ma vie.",
+                    priere: "Seigneur Jésus. Merci parce que tu règnes au-dessus de toute puissance. Donne-moi de comprendre ma position en toi. Aide-moi à exercer l'autorité avec amour, sagesse et humilité. Que ton règne se manifeste dans ma vie. Amen.",
+                    progression: "Je ne regarde plus l'ennemi comme supérieur. Je fixe mes yeux sur Christ, le Roi victorieux, et je marche dans son autorité."
+                },
+                "THÈME 30 — JÉSUS M'A DONNÉ AUTORITÉ SUR TOUTE PUISSANCE DE L'ENNEMI": {
+                    versets: "Luc 10:19 • Matthieu 28:18-20 • Marc 16:17-18 • Jacques 4:7 • Éphésiens 6:10-18",
+                    confession: "Père céleste, Je confesse que toute autorité appartient à Jésus-Christ.",
+                    declaration: "Je déclare que je marche dans l'autorité de Jésus. Je déclare que je suis fortifié par le Saint-Esprit. Je déclare que la Parole de Dieu est mon épée. Je déclare que je demeure ferme dans la foi.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute puissance ennemie est soumise à l'autorité du Seigneur. Je proclame que je résiste au diable et qu'il fuit. Je proclame que la lumière de Christ brille à travers ma vie. Je proclame que Dieu m'utilise comme un instrument de son Royaume.",
+                    priere: "Père céleste, Merci pour l'autorité que tu m'accordes en Jésus-Christ. Apprends-moi à l'exercer avec sagesse et amour. Revêts-moi de toutes les armes spirituelles. Que ma vie témoigne de la puissance de ton Royaume. Au nom de Jésus. Amen.",
+                    progression: "Je passe d'une attitude passive à une vie de foi active."
+                },
+                "THÈME 31 — JE SUIS PLUS QUE VAINQUEUR PAR CHRIST": {
+                    versets: "Romains 8:31-39 • 1 Corinthiens 15:57 • 2 Corinthiens 2:14 • Apocalypse 12:11 • Jean 16:33",
+                    confession: "Père céleste, Je confesse que je suis plus que vainqueur par Jésus-Christ qui m'a aimé. Ma victoire ne dépend pas de mes propres forces, mais de la puissance de ton amour et de l'œuvre parfaite de Christ. Je crois qu'aucune tribulation, aucune épreuve, aucune opposition ne pourra me séparer de ton amour. Je confesse que Jésus a déjà remporté la victoire et que je marche dans cette victoire.",
+                    declaration: "Je déclare que je ne suis pas vaincu par les circonstances. Je déclare que Christ me fortifie dans toutes les situations. Je déclare que les difficultés ne déterminent pas ma destinée. Je marche avec assurance, car Dieu est avec moi. Je transforme les épreuves en occasions de manifester la fidélité de Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute opposition contre ma vie est soumise à la victoire de Christ. Je proclame que la peur, le découragement et le doute n'ont aucun pouvoir sur moi. Je proclame que je triomphe par la grâce de Dieu. Je proclame que les plans de Dieu pour ma vie s'accomplissent.",
+                    priere: "Père céleste, Merci parce que ma victoire est en Jésus-Christ. Lorsque les difficultés apparaissent, rappelle-moi que tu es plus grand que toute situation. Fortifie ma foi et apprends-moi à persévérer. Que ma vie soit un témoignage de ta puissance. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de mesurer ma vie selon mes combats. Je commence à regarder mes combats depuis la victoire déjà acquise en Christ."
+                },
+                "THÈME 32 — JE TRIOMPHE EN CHRIST": {
+                    versets: "2 Corinthiens 2:14 • Colossiens 1:12-14 • Colossiens 2:15 • Psaume 60:14 • Psaume 108:14",
+                    confession: "Père céleste, Je confesse que tu me fais toujours triompher en Christ. Jésus a vaincu le péché, la mort et les puissances des ténèbres. Je ne marche pas dans la défaite, mais dans le triomphe de mon Seigneur. Je crois que ta grâce m'accompagne chaque jour.",
+                    declaration: "Je déclare que la victoire de Jésus produit ses effets dans ma vie. Je déclare que je suis conduit par Dieu dans le triomphe. Je ne suis pas dominé par les circonstances. Je porte le témoignage de la fidélité de Dieu. Ma vie manifeste la gloire du Seigneur.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute œuvre qui cherche à m'arrêter est vaincue par la puissance de Dieu. Je proclame que la victoire de Christ est active dans mon esprit, mon âme et mon corps. Je proclame que je marche de progrès en progrès. Je proclame que Dieu transforme mes combats en témoignages.",
+                    priere: "Seigneur Jésus, Merci parce que tu m'as conduit dans ton triomphe. Apprends-moi à garder les yeux fixés sur toi. Que ma bouche annonce tes victoires. Que ma vie révèle ta puissance. Amen.",
+                    progression: "Je passe d'une mentalité de survie à une mentalité de victoire. Je découvre que Dieu m'appelle à vivre comme un témoin de son triomphe."
+                },
+                "THÈME 33 — JE RÉSISTE AU DIABLE ET IL FUIT LOIN DE MOI": {
+                    versets: "Jacques 4:7 • 1 Pierre 5:8-9 • Éphésiens 6:10-18 • Matthieu 4:1-11 • Luc 4:13",
+                    confession: "Père céleste, Je confesse que je suis soumis à Dieu et que je peux résister au diable. Je ne suis pas sans défense, car tu m'as donné ta Parole, ta puissance et ton Esprit. Je crois que Jésus m'a montré l'exemple de la victoire par la vérité de Dieu.",
+                    declaration: "Je déclare que je demeure ferme dans la foi. Je déclare que la Parole de Dieu est mon fondement. Je rejette les mensonges de l'ennemi. Je choisis la vérité, l'obéissance et la confiance en Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute tentation qui s'élève contre la volonté de Dieu est vaincue. Je proclame que je suis fortifié par le Saint-Esprit. Je proclame que l'ennemi n'a aucune autorité sur une vie soumise à Dieu. Je proclame que le diable fuit devant la puissance de Jésus-Christ.",
+                    priere: "Père céleste, Donne-moi la sagesse de discerner les attaques de l'ennemi. Fortifie-moi pour rester ferme dans ta Parole. Apprends-moi à dépendre entièrement de toi. Que ma vie demeure sous ton autorité. Amen.",
+                    progression: "Je passe d'une attitude passive à une attitude spirituellement vigilante. J'apprends à résister par la foi, la vérité et l'obéissance."
+                },
+                "THÈME 34 — JE RENONCE AUX ŒUVRES DES TÉNÈBRES": {
+                    versets: "Romains 13:12-14 • Éphésiens 5:8-11 • Colossiens 1:12-13",
+                    confession: "Père céleste, Je confesse que tu m'as délivré des ténèbres et que tu m'as transporté dans le Royaume de ton Fils bien-aimé. Je n'appartiens plus aux œuvres des ténèbres. Je suis appelé à marcher dans ta lumière. Je désire que toute ma vie soit agréable à Dieu.",
+                    declaration: "Je déclare que je suis enfant de lumière. Je rejette tout ce qui s'oppose à la volonté de Dieu. Je renonce aux habitudes, pensées et comportements qui ne glorifient pas le Seigneur. Je choisis la vérité, la pureté et la sainteté.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que les œuvres des ténèbres n'ont plus de domination sur moi. Je proclame que la lumière de Christ règne dans ma vie. Je proclame que toute influence contraire à Dieu est rejetée. Je marche dans la liberté et la sainteté.",
+                    priere: "Père céleste, Sonde mon cœur et montre-moi ce qui doit être abandonné. Purifie-moi par ton Esprit. Aide-moi à marcher dans la lumière chaque jour. Que ma vie honore ton nom. Amen.",
+                    progression: "Je quitte progressivement les anciennes voies pour marcher pleinement dans la lumière de Christ."
+                },
+                "THÈME 35 — JE SUIS DÉLIVRÉ DU ROYAUME DES TÉNÈBRES": {
+                    versets: "Colossiens 1:13-14 • Actes 26:18 • Éphésiens 2:1-6 • 1 Pierre 2:9 • Jean 8:36",
+                    confession: "Père céleste, Je confesse que tu m'as délivré du pouvoir des ténèbres. Tu m'as transféré dans le Royaume de ton Fils bien-aimé. Je ne suis plus sous l'esclavage du péché ni sous la domination des ténèbres. Je suis libre en Jésus-Christ.",
+                    declaration: "Je déclare que j'appartiens au Royaume de Dieu. Je déclare que Jésus est mon Seigneur et mon Libérateur. Je marche dans la lumière, la vérité et la liberté. Je refuse toute identité liée à mon ancienne vie.",
+                    proclamation: "Au nom puissant de Jésus-Christ. Je proclame que toute chaîne spirituelle contraire à Dieu est brisée. Je proclame que les ténèbres n'ont plus de droit sur ma vie. Je proclame que la puissance du Royaume de Dieu agit en moi. Je marche dans la liberté que Christ m'a donnée.",
+                    priere: "Père céleste, Merci parce que tu m'as délivré. Merci parce que Jésus m'a fait passer des ténèbres à la lumière. Aide-moi à vivre comme un citoyen de ton Royaume. Que ta lumière brille à travers ma vie.",
+                    progression: "Je ne me définis plus par ce dont j'ai été délivré. Je vis désormais selon le Royaume auquel j'appartiens."
+                },
+                "THÈME 36 — JE BRISE TOUTE ALLIANCE CONTRAIRE À LA VOLONTÉ DE DIEU": {
+                    versets: "Colossiens 2:14-15 • Galates 3:13 • Hébreux 12:24 • Ésaïe 28:18 • 2 Corinthiens 6:14-18",
+                    confession: "Père céleste, Je confesse que la nouvelle alliance en Jésus-Christ est la seule alliance qui définit ma vie. Par le sang de Jésus, toute ancienne dette, toute condamnation et toute œuvre contraire à ta volonté ont été annulées. Je crois que Christ m'a racheté de toute malédiction et de toute domination qui ne vient pas de toi. Je t'appartiens entièrement.",
+                    declaration: "Je déclare que le sang de Jésus est la marque de mon appartenance à Dieu. Je renonce à toute alliance, tout engagement ou toute influence qui s'oppose à ma relation avec Dieu. Je déclare que ma vie, mon esprit, mon âme et mon corps appartiennent au Seigneur. Je marche dans la liberté de la nouvelle alliance.",
+                    proclamation: "Au nom puissant de Jésus-Christ. Je proclame que toute alliance contraire à la volonté de Dieu est annulée par la puissance de la croix. Je proclame que toute œuvre cachée qui cherche à maintenir une influence sur ma vie perd son pouvoir. Je proclame que je suis établi dans l'alliance éternelle de Jésus-Christ. Je proclame que seule la volonté de Dieu demeure dans ma vie.",
+                    priere: "Père céleste, Merci pour la nouvelle alliance établie par le sang de Jésus. Je renonce à tout ce qui n'est pas conforme à ta volonté. Purifie ma vie et affermis mon engagement envers toi. Que mon cœur soit entièrement consacré à Jésus-Christ.",
+                    progression: "Je passe d'une vie influencée par le passé à une vie fondée sur l'alliance parfaite de Christ."
+                },
+                "THÈME 37 — JE RENONCE AUX PAROLES, ENGAGEMENTS ET INFLUENCES OPPOSÉS À DIEU": {
+                    versets: "Proverbes 18:21 • Matthieu 12:36-37 • Jacques 3:5-10 • Romains 10:9-10 • Éphésiens 4:29",
+                    confession: "Père céleste, Je confesse que mes paroles ont de la valeur devant toi.",
+                    declaration: "Je déclare que ma bouche annonce la vie. Je déclare que mes paroles sont alignées avec la vérité de Dieu. Je refuse les murmures, les paroles destructrices et les déclarations contraires aux promesses divines. Je parle selon la foi, l'amour et la sagesse de Dieu.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute parole prononcée contre les plans de Dieu pour ma vie est annulée. Je proclame que ma bouche devient un instrument de bénédiction. Je proclame que mes pensées et mes paroles sont renouvelées par le Saint-Esprit. Je proclame la vie, la paix et la victoire de Christ.",
+                    priere: "Père céleste, Mets une garde sur ma bouche. Apprends-moi à parler comme ton enfant. Que mes paroles encouragent, guérissent et glorifient ton nom. Que ma confession soit toujours en accord avec ta vérité. Amen.",
+                    progression: "Je prends conscience que mes paroles révèlent ma foi. Je décide d'utiliser ma bouche pour proclamer la vérité, la vie et la victoire de Christ."
+                },
+                "THÈME 38 — JE MARCHE DANS LA LIBERTÉ DE CHRIST": {
+                    versets: "Galates 5:1 • Jean 8:36 • 2 Corinthiens 3:17 • Romains 8:1-2 • Luc 4:18",
+                    confession: "Père céleste, Je confesse que Jésus-Christ m'a rendu libre. Je ne suis plus esclave du péché, de la peur ou de la condamnation. La liberté que Christ me donne est véritable et complète. Je crois que ton Esprit me conduit dans une vie nouvelle.",
+                    declaration: "Je déclare que je marche dans la liberté de Christ. Je refuse toute forme d'esclavage spirituel, émotionnel ou intérieur. Je déclare que la grâce de Dieu me fortifie. Je vis comme une personne libérée et transformée par Jésus.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute chaîne qui cherche à m'asservir est brisée. Je proclame que la puissance du Saint-Esprit agit en moi. Je proclame que je suis libre de servir Dieu avec joie. Je proclame que ma vie manifeste la liberté des enfants de Dieu.",
+                    priere: "Seigneur Jésus. Merci pour la liberté que tu m'as donnée. Aide-moi à ne jamais retourner sous les anciennes chaînes. Apprends-moi à marcher chaque jour dans ta grâce. Que ma liberté serve à glorifier ton nom. Amen.",
+                    progression: "Je ne cherche plus seulement à être délivré. J'apprends à vivre durablement dans la liberté que Christ m'a donnée."
+                }
+            },
+            "PARTIE V — LE SAINT-ESPRIT ET LA VIE EN DIEU": {
+                "THÈME 39 — DIEU DEMEURE EN MOI": {
+                    versets: "1 Jean 4:12-16 • Jean 14:23 • 1 Corinthiens 3:16 • Éphésiens 2:22 • Apocalypse 21:3",
+                    confession: "Père céleste, Je confesse que tu demeures en moi par ton Esprit.",
+                    declaration: "Je déclare que Dieu habite en moi. Je déclare que sa présence remplit mon esprit, mon âme et mon corps. Je déclare que je porte la présence de Dieu partout où je vais. Je ne marche pas selon mes seules capacités, mais avec l'aide du Seigneur qui demeure en moi.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que la présence de Dieu est plus grande que toute opposition. Je proclame que les ténèbres ne peuvent dominer une vie habitée par Dieu. Je proclame que la paix, la sagesse et la puissance de Dieu agissent en moi. Je proclame que ma vie devient un témoignage vivant de sa présence.",
+                    priere: "Père céleste, Merci parce que tu as choisi de demeurer en moi. Aide-moi à honorer ta présence chaque jour. Que mes pensées, mes paroles et mes actions reflètent celui qui habite en moi. Que ma vie soit une maison agréable pour ton Esprit. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je ne cherche plus seulement la présence de Dieu autour de moi. Je vis dans la conscience qu'il demeure en moi."
+                },
+                "THÈME 40 — LE SAINT-ESPRIT HABITE EN MOI": {
+                    versets: "Jean 14:16-17 • Romains 8:9-11 • 1 Corinthiens 3:16 • Éphésiens 3:16-17 • 2 Timothée 1:14",
+                    confession: "Père céleste, Je confesse que ton Saint-Esprit habite en moi. Je ne suis pas seul dans ma marche avec Dieu. Ta présence demeure en moi pour me guider, m'enseigner et me fortifier. Je crois que le même Esprit qui a ressuscité Jésus agit en moi.",
+                    declaration: "Je déclare que je suis conduit par le Saint-Esprit. Je déclare que sa présence produit en moi la sagesse, la paix et la puissance. Je suis sensible à sa voix. Je marche selon sa direction.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que la présence de Dieu demeure en moi. Je proclame que toute influence contraire à l'œuvre du Saint-Esprit est rejetée. Je proclame que mon esprit est fortifié par la puissance divine. Je proclame que ma vie manifeste le fruit de l'Esprit.",
+                    priere: "Père céleste. Merci pour le don merveilleux du Saint-Esprit. Apprends-moi à marcher dans une communion constante avec lui. Guide mes pensées, mes décisions et mes actions. Que ta présence transforme toute ma vie. Amen.",
+                    progression: "Je passe d'une vie dirigée par mes propres capacités à une vie dépendante du Saint-Esprit."
+                },
+                "THÈME 41 — MON CORPS EST LE TEMPLE DU SAINT-ESPRIT": {
+                    versets: "1 Corinthiens 6:19-20 • 1 Corinthiens 3:16-17 • Romains 12:1 • 2 Corinthiens 6:16 • Éphésiens 2:21-22",
+                    confession: "Père céleste, Je confesse que mon corps est le temple du Saint-Esprit. Mon corps ne m'appartient pas, car j'ai été racheté à un grand prix par le sang de Jésus. Je crois que mon esprit, mon âme et mon corps appartiennent au Seigneur.",
+                    declaration: "Je déclare que mon corps est consacré à Dieu. Je prends soin de ce que Dieu m'a confié. Je refuse toute pratique qui détruit ou souille ce temple. Je déclare que la vie de Dieu agit en moi.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que mon corps appartient au Seigneur. Je proclame que toute œuvre de destruction contre ma santé et ma vie est rejetée. Je proclame que Dieu est glorifié dans mon corps. Je proclame que la présence du Saint-Esprit demeure en moi.",
+                    priere: "Père céleste, Merci parce que tu demeures en moi par ton Esprit. Aide-moi à honorer mon corps comme un temple consacré. Donne-moi la sagesse pour prendre soin de ce que tu m'as confié. Que toute ma vie rende gloire à Jésus-Christ. Amen.",
+                    progression: "Je comprends que mon corps n'est pas simplement biologique, mais qu'il appartient à Dieu. J'apprends à vivre dans le respect et la consécration envers le temple du Saint-Esprit."
+                },
+                "THÈME 42 — JE SUIS REMPLI DU SAINT-ESPRIT": {
+                    versets: "Éphésiens 5:18 • Actes 2:1-4 • Actes 4:31 • Actes 13:52 • Luc 11:13",
+                    confession: "Père céleste, Je confesse que tu m'as donné ton Saint-Esprit. Je crois que je peux être rempli continuellement de ta présence et de ta puissance. Je ne dépend pas uniquement de mes forces humaines. Je reçois ton Esprit pour vivre, servir et témoigner de Jésus-Christ.",
+                    declaration: "Je déclare que le Saint-Esprit me remplit chaque jour. Je déclare que sa puissance agit dans ma faiblesse. Je déclare que sa sagesse guide mes décisions. Je déclare que son amour transforme mon cœur. Je marche rempli de Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que le Saint-Esprit produit en moi une vie nouvelle. Je proclame que toute peur, toute timidité et tout découragement sont remplacés par la puissance de Dieu. Je proclame que je suis équipé pour accomplir les œuvres préparées par le Seigneur. Je proclame que ma vie manifeste la gloire de Dieu.",
+                    priere: "Père céleste, Remplis-moi davantage de ton Saint-Esprit. Que ta puissance renouvelle mon être intérieur. Donne-moi de marcher dans ta volonté avec courage et fidélité. Utilise-moi pour l'avancement de ton Royaume. Amen.",
+                    progression: "Je passe d'une vie basée sur mes capacités à une vie dépendante de la puissance du Saint-Esprit."
+                },
+                "THÈME 43 — JE MARCHE PAR L'ESPRIT": {
+                    versets: "Galates 5:16-25 • Romains 8:5-14 • Ézéchiel 36:27 • Jean 16:13 • Romains 12:2",
+                    confession: "Père céleste, Je confesse que ton Esprit me conduit. Je ne suis plus appelé à vivre selon les désirs de la chair, mais selon ta volonté. Je crois que le Saint-Esprit produit en moi le vouloir et le faire selon ton dessein. Je choisis d'être dirigé par toi.",
+                    declaration: "Je déclare que je marche selon l'Esprit. Je déclare que mes pensées sont renouvelées par Dieu. Je déclare que mes décisions sont guidées par sa sagesse. Je déclare que je porte le caractère de Christ. Je choisis chaque jour la voie de l'Esprit.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que la chair ne domine pas ma vie. Je proclame que le Saint-Esprit règne sur mes pensées, mes émotions et mes actions. Je proclame que toute influence contraire à Dieu perd son pouvoir. Je marche dans la liberté et la victoire de l'Esprit.",
+                    priere: "Seigneur. Apprends-moi à marcher selon ton Esprit. Aide-moi à reconnaître ta voix et à obéir à ta direction. Transforme mes désirs afin qu'ils correspondent à ta volonté. Que Christ soit formé en moi. Amen.",
+                    progression: "Je cesse d'être gouverné par mes impulsions naturelles. J'apprends à vivre sous la direction quotidienne du Saint-Esprit."
+                },
+                "THÈME 44 — JE PORTE LE FRUIT DE L'ESPRIT": {
+                    versets: "Galates 5:22-23 • Jean 15:5 • Colossiens 3:12-15 • Philippiens 1:11 • Matthieu 7:17-18",
+                    confession: "Père céleste, Je confesse que ton Esprit produit son fruit en moi. Je ne cherche pas seulement des dons, mais une transformation du caractère. Je crois que l'amour, la joie, la paix et toutes les qualités de Christ grandissent en moi. Je demeure attaché à Jésus, le véritable Cep.",
+                    declaration: "Je déclare que l'amour de Dieu remplit mon cœur. Je déclare que sa paix garde mes pensées. Je déclare que sa patience transforme mes réactions. Je déclare que sa bonté influence mes relations. Je porte le caractère de Jésus-Christ.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que le fruit de l'Esprit grandit dans ma vie. Je proclame que l'ancienne nature perd son influence. Je proclame que mes paroles et mes actions reflètent Christ. Je proclame que ma vie porte du fruit pour la gloire de Dieu.",
+                    priere: "Père céleste, Fais grandir ton fruit en moi. Transforme mon caractère selon l'image de Jésus. Apprends-moi à aimer comme Christ aime. Que ma vie bénisse ceux qui m'entourent. Amen.",
+                    progression: "Je ne cherche plus seulement à changer mon comportement. Je laisse Dieu transformer mon cœur afin que le fruit apparaisse naturellement."
+                },
+                "THÈME 45 — JE SUIS REVÊTU DE LA PUISSANCE D'EN HAUT": {
+                    versets: "Luc 24:49 • Actes 1:8 • Éphésiens 3:16 • Éphésiens 6:10",
+                    confession: "Père céleste, Je confesse que tu m'as donné une puissance qui vient d'en haut. Cette puissance ne vient pas de mes capacités humaines, mais du Saint-Esprit. Je crois que tu me fortifies pour accomplir ta volonté et témoigner de Jésus-Christ.",
+                    declaration: "Je déclare que je suis fortifié par la puissance de Dieu. Je déclare que je ne suis pas dominé par la peur. Je déclare que le Saint-Esprit me donne courage, sagesse et assurance. Je marche équipé pour accomplir les œuvres de Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que la puissance du Saint-Esprit agit dans ma vie. Je proclame que toute faiblesse qui m'empêche d'accomplir la volonté de Dieu est vaincue. Je proclame que je suis rendu capable par la grâce de Dieu. Je proclame que ma vie sera un témoignage de la puissance divine.",
+                    priere: "Père céleste, Revêts-moi de ta puissance d'en haut. Fortifie mon esprit afin que je sois un témoin fidèle de Jésus. Donne-moi le courage de marcher dans mon appel. Que ta puissance se manifeste pour ta gloire. Amen.",
+                    progression: "Je cesse de compter uniquement sur mes ressources personnelles. J'apprends à servir Dieu par la puissance que le Saint-Esprit donne."
+                },
+                "THÈME 46 — LE SAINT-ESPRIT VIVIFIE MON CORPS": {
+                    versets: "Romains 8:11 • Jean 6:63 • 2 Corinthiens 4:10-11 • Ésaïe 40:29-31 • Psaume 103:1-5",
+                    confession: "Père céleste, Je confesse que le même Esprit qui a ressuscité Jésus-Christ d'entre les morts habite en moi. Je crois que cet Esprit vivifie aussi mon corps mortel. La vie de Dieu agit dans chacune de mes cellules, dans chacun de mes organes et dans tout mon être. Je reçois la force, la santé et le renouvellement que donne le Saint-Esprit.",
+                    declaration: "Je déclare que la vie de Dieu circule en moi. Je déclare que le Saint-Esprit renouvelle continuellement mon corps. Je déclare que toute faiblesse est remplacée par la force du Seigneur. Je marche dans la vie abondante que Jésus m'a acquise.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que l'Esprit de Dieu vivifie tout mon être. Je proclame que toute œuvre de mort, de faiblesse et de destruction recule devant la vie de Dieu. Je proclame que mon corps répond à la puissance de la résurrection de Jésus-Christ. Je proclame que la gloire de Dieu se manifeste dans ma santé et dans mes forces.",
+                    priere: "Père céleste, Merci pour le Saint-Esprit qui demeure en moi. Que sa puissance de résurrection renouvelle mon corps chaque jour. Fortifie-moi dans mon être intérieur et dans mon corps. Que je vive pleinement pour accomplir ta volonté. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de regarder uniquement mes limites physiques. J'apprends à compter sur la puissance vivifiante du Saint-Esprit qui agit continuellement en moi."
+                },
+                "THÈME 47 — JE MANIFESTE LA VIE DE CHRIST": {
+                    versets: "Galates 2:20 • Colossiens 3:3-4 • Jean 10:10 • 2 Corinthiens 4:10-11 • Philippiens 1:21",
+                    confession: "Père céleste, Je confesse que Christ est ma vie. Je ne vis plus pour moi-même, mais pour celui qui est mort et ressuscité pour moi. La vie de Jésus se manifeste en moi par le Saint-Esprit. Je crois que chaque jour je suis transformé à son image.",
+                    declaration: "Je déclare que la vie de Christ se manifeste dans mes pensées. Je déclare que la vie de Christ se manifeste dans mes paroles. Je déclare que la vie de Christ se manifeste dans mes attitudes. Je déclare que la vie de Christ se manifeste dans mon corps, dans mon travail, dans ma famille et dans mon ministère.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que la vie de Jésus chasse toute œuvre de mort. Je proclame que la puissance de la résurrection agit continuellement en moi. Je proclame que ma vie révèle Jésus à ceux qui m'entourent. Je proclame que Christ est tout en tous en moi.",
+                    priere: "Seigneur Jésus, Vis pleinement en moi. Que mes pensées, mes paroles et mes actions reflètent ton caractère. Transforme-moi chaque jour à ton image. Que tous ceux qui me rencontrent puissent voir ta vie se manifester en moi. Amen.",
+                    progression: "Je cesse de chercher à vivre la vie chrétienne par mes propres forces. Je laisse Christ vivre sa vie en moi par le Saint-Esprit."
+                }
+            },
+            "PARTIE VI — GUÉRISON, PROTECTION ET BÉNÉDICTION": {
+                "THÈME 48 — JÉSUS A PORTÉ MES MALADIES": {
+                    versets: "Ésaïe 53:4-5 • Matthieu 8:16-17 • Psaume 103:2-3 • Exode 15:26",
+                    confession: "Père céleste, Je confesse que Jésus a porté mes souffrances et s'est chargé de mes maladies. À la croix, il a porté ce qui m'accablait afin que je reçoive sa vie. Je crois que son sacrifice est parfait et suffisant. Je place ma confiance en toi, mon Dieu qui guéris.",
+                    declaration: "Je déclare que Jésus est mon guérisseur. Je déclare que mon espérance repose sur ses promesses. Je déclare que la puissance de Dieu agit dans tout mon être. Je déclare que je marche dans la paix, la foi et l'espérance.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que l'œuvre de la croix demeure efficace dans ma vie. Je proclame que toute maladie, toute infirmité et toute faiblesse doivent se soumettre à l'autorité de Jésus-Christ. Je proclame que la vie de Dieu agit dans mon corps. Je proclame que le Seigneur accomplit sa volonté parfaite en moi.",
+                    priere: "Père céleste, Merci pour le sacrifice de Jésus. Merci parce qu'il a porté mes souffrances. Je reçois avec reconnaissance la grâce qui découle de son œuvre parfaite. Fortifie ma foi afin que je demeure ferme dans tes promesses. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je passe d'une foi basée sur les circonstances à une foi fondée sur l'œuvre accomplie de Jésus-Christ."
+                },
+                "THÈME 49 — PAR SES MEURTRISSURES JE SUIS GUÉRI": {
+                    versets: "Ésaïe 53:5 • 1 Pierre 2:24 • Jérémie 17:14 • Psaume 107:20 • Marc 5:34",
+                    confession: "Père céleste. Je confesse que par les meurtrissures de Jésus-Christ, j'ai reçu la guérison. Je crois que ta Parole est vérité. Je place ma confiance en ton amour, en ta fidélité et en ta puissance. Tu es le Dieu qui restaure entièrement.",
+                    declaration: "Je déclare que la guérison de Dieu agit dans tout mon être. Je déclare que mon corps répond à la vie de Christ. Je déclare que mes forces sont renouvelées. Je déclare que la paix de Dieu garde mon cœur pendant tout le processus de restauration.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute atteinte à ma santé est soumise à l'autorité du Seigneur. Je proclame que la Parole de Dieu accomplit ce qu'elle déclare. Je proclame que la puissance du Saint-Esprit agit dans tout mon corps. Je proclame que Dieu est glorifié à travers ma vie.",
+                    priere: "Seigneur, Merci pour les meurtrissures que tu as supportées par amour pour moi. Affermis ma confiance dans ta Parole. Apprends-moi à demeurer dans la paix pendant que tu accomplis ton œuvre. Je te rends gloire pour ta fidélité. Amen.",
+                    progression: "Je fonde ma foi sur les promesses éternelles de Dieu plutôt que sur les circonstances visibles."
+                },
+                "THÈME 50 — MON CORPS APPARTIENT AU SEIGNEUR": {
+                    versets: "1 Corinthiens 6:19-20 • Romains 12:1 • 1 Thessaloniciens 5:23 • 3 Jean 2 • Psaume 139:13-16",
+                    confession: "Père céleste. Je confesse que mon corps t'appartient. J'ai été racheté à un grand prix par le sang de Jésus-Christ. Mon esprit, mon âme et mon corps sont consacrés à ton service. Je désire t'honorer dans toute ma manière de vivre.",
+                    declaration: "Je déclare que mon corps est consacré au Seigneur. Je déclare que chaque organe, chaque cellule et chaque fonction de mon corps sont sous l'autorité de Jésus-Christ. Je déclare que je prends soin de ce temple avec sagesse. Je déclare que ma santé contribue à l'accomplissement de ma vocation.",
+                    proclamation: "Au nom puissant de Jésus-Christ. Je proclame que mon corps est la propriété de Dieu. Je proclame que toute maladie doit se soumettre à l'autorité du Seigneur. Je proclame que la santé de Dieu est manifeste dans mes os, dans mes artères, dans mes cellules et dans mon esprit. Je proclame que je suis vivant, fort et productif pour la gloire du Seigneur.",
+                    priere: "Père céleste, Merci parce que mon corps t'appartient. Apprends-moi à le respecter, à en prendre soin et à le consacrer entièrement à ton service. Que toute ma vie, dans mon esprit, mon âme et mon corps, rende gloire à Jésus-Christ. Amen.",
+                    progression: "Je comprends que mon corps n'est pas seulement un instrument de la vie terrestre. Je le considère comme un dépôt sacré confié par Dieu pour accomplir sa volonté."
+                },
+                "THÈME 51 — DIEU RENOUVELLE MES FORCES": {
+                    versets: "Ésaïe 40:28-31 • Psaume 103:1-5 • 2 Corinthiens 4:16 • Philippiens 4:13 • Néhémie 8:10",
+                    confession: "Père céleste, Je confesse que tu es le Dieu qui renouvelle mes forces. Lorsque je suis faible, tu me fortifies par ta puissance. Je crois que ceux qui se confient en toi renouvellent leur vigueur et marchent sans se fatiguer. Tu soutiens mon esprit, mon âme et mon corps.",
+                    declaration: "Je déclare que mes forces sont renouvelées par le Seigneur. Je déclare que la joie du Seigneur est ma force. Je déclare que je suis fortifié intérieurement par le Saint-Esprit. Je déclare que Dieu me rend capable d'accomplir tout ce qu'il attend de moi.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute fatigue, tout découragement et tout épuisement doivent céder devant la puissance de Dieu. Je proclame que le Seigneur renouvelle mes forces comme celles de l'aigle. Je proclame que je marche avec endurance dans la volonté de Dieu. Je proclame que la puissance de Christ repose sur moi.",
+                    priere: "Père céleste, Merci parce que tu es ma force. Lorsque je suis faible, relève-moi et renouvelle-moi. Donne-moi la persévérance pour accomplir fidèlement la mission que tu m'as confiée. Que je trouve chaque jour mon repos en toi. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de dépendre uniquement de mes capacités naturelles. J'apprends à puiser continuellement ma force dans la présence de Dieu."
+                },
+                "THÈME 52 — DIEU EST MON REFUGE": {
+                    versets: "Psaume 46:1-2 • Psaume 91:1-2 • Psaume 18:2-3 • Proverbes 18:10 • Nahum 1:7",
+                    confession: "Père céleste. Je confesse que tu es mon refuge et ma forteresse. Tu es mon abri dans les jours de détresse. Je place ma confiance en toi plutôt qu'en mes propres ressources. Je sais que tu ne m'abandonneras jamais.",
+                    declaration: "Je déclare que Dieu est mon refuge. Je déclare que je demeure en sécurité sous sa protection. Je déclare que mon cœur ne sera pas dominé par la peur. Je déclare que le Seigneur combat pour moi.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que toute attaque dirigée contre ma vie se heurte à la protection du Dieu Tout-Puissant. Je proclame que le Seigneur est mon bouclier. Je proclame que sa fidélité m'entoure comme une muraille. Je proclame que je demeure dans la paix de Dieu.",
+                    priere: "Père céleste, Merci parce que tu es mon refuge sûr. Apprends-moi à courir vers toi dans toutes les circonstances. Que mon cœur demeure ferme dans la confiance. Je me repose sous ta protection. Amen.",
+                    progression: "Je cesse de chercher ma sécurité dans les choses de ce monde. Je trouve mon assurance dans la présence fidèle de Dieu."
+                },
+                "THÈME 53 — JE DEMEURE SOUS LES AILES DU TRÈS-HAUT": {
+                    versets: "Psaume 91 • Psaume 57:2 • Psaume 63:8 • Ruth 2:12 • Matthieu 23:37",
+                    confession: "Père céleste, Je confesse que je demeure sous l'abri du Très-Haut. Je repose à l'ombre du Tout-Puissant. Ta fidélité est mon bouclier et ma cuirasse. Je demeure sous tes ailes où je trouve sécurité, paix et repos.",
+                    declaration: "Je déclare que Dieu me couvre de sa protection. Je déclare que je demeure dans sa présence jour et nuit. Je déclare que sa fidélité m'accompagne partout. Je déclare que je suis gardé par l'amour du Père.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que je demeure sous la protection du Très-Haut. Je proclame qu'aucun piège de l'ennemi ne pourra prévaloir contre moi. Je proclame que Dieu me garde dans toutes mes voies. Je proclame que sa paix règne dans ma vie.",
+                    priere: "Père céleste, Merci parce que tu me caches sous tes ailes. Apprends-moi à demeurer constamment dans ta présence. Que ma confiance en toi grandisse chaque jour. Je me repose dans ton amour. Amen.",
+                    progression: "Je passe d'une vie gouvernée par l'inquiétude à une vie de repos dans la présence de Dieu."
+                },
+                "THÈME 54 — LES ANGES DE DIEU ME GARDENT": {
+                    versets: "Psaume 91:11-12 • Hébreux 1:13-14 • Psaume 34:8 • Matthieu 18:10",
+                    confession: "Père céleste, Je confesse que tu donnes des ordres à tes anges à mon sujet. Tu les envoies pour servir ceux qui doivent hériter du salut. Je te remercie pour ta protection invisible. Ma confiance repose en toi, et non dans les anges eux-mêmes.",
+                    declaration: "Je déclare que Dieu veille continuellement sur moi. Je déclare que sa protection m'entoure. Je déclare que je marche en sécurité dans les voies que Dieu a préparées. Je déclare que le Seigneur me délivre de tout piège.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que Dieu ordonne à ses anges de me garder selon sa volonté. Je proclame que toute embûche de l'ennemi est déjouée. Je proclame que le Seigneur est mon protecteur. Je proclame que je marche dans la paix et dans la sécurité que Dieu accorde.",
+                    priere: "Père céleste, Merci pour ta protection fidèle. Merci pour le ministère de tes anges qui accomplissent tes ordres. Aide-moi à vivre dans une confiance totale envers toi. Que je demeure toujours sous ta garde. Amen.",
+                    progression: "Je ne vis plus dans la peur de l'invisible. Je vis dans l'assurance que Dieu veille continuellement sur ses enfants."
+                },
+                "THÈME 55 — AUCUNE ARME FORGÉE CONTRE MOI NE PROSPÉRERA": {
+                    versets: "Ésaïe 54:17 • Luc 10:19 • Romains 8:31-39 • Psaume 27:1-3",
+                    confession: "Père céleste, Je confesse qu'aucune arme forgée contre moi ne prospérera. Tu es mon défenseur, mon bouclier et mon libérateur. Je crois que tu fais concourir toutes choses à mon bien. Aucune attaque ne pourra annuler les desseins que tu as pour ma vie.",
+                    declaration: "Je déclare que je suis protégé par le Seigneur. Je déclare que toute accusation mensongère est réduite au silence. Je déclare que Dieu me garde dans sa fidélité. Je déclare que la victoire de Jésus est ma protection.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que toute arme spirituelle, physique, psychologique ou relationnelle dirigée contre moi est sans effet devant l'autorité de Jésus-Christ. Je proclame que toute parole de malédiction, toute accusation, toute œuvre des ténèbres et tout projet inspiré par l'ennemi sont rendus impuissants par le sang de Jésus-Christ. Je proclame que le Seigneur est mon défenseur, que le Saint-Esprit est mon protecteur et que les promesses de Dieu sont mon héritage. Je proclame que je demeure ferme, victorieux et inébranlable, parce que mon héritage est en Jésus-Christ.",
+                    priere: "Père céleste, Merci parce que tu es mon protecteur fidèle. Je remets entre tes mains ma vie, ma famille, mon ministère, mon travail et tout ce que tu m'as confié. Apprends-moi à demeurer dans la foi et dans l'obéissance afin de vivre sous ta protection. Que toute la gloire te revienne, au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse d'être gouverné par la peur des attaques de l'ennemi. Je développe une confiance inébranlable dans la souveraineté de Dieu, dans la puissance du sang de Jésus-Christ et dans les promesses immuables de sa Parole."
+                },
+                "THÈME 56 — LE SEIGNEUR COMBAT POUR MOI": {
+                    versets: "Exode 14:13-14 • Deutéronome 1:30 • Deutéronome 20:4 • 2 Chroniques 20:15-17 • Romains 8:31",
+                    confession: "Père céleste, Je confesse que tu es le Dieu qui combat pour moi. Je n'ai pas à craindre les ennemis visibles ou invisibles, car tu marches devant moi. Je crois que mes victoires ne reposent pas sur ma propre force, mais sur ta puissance. Tu es mon Défenseur, mon Bouclier et mon Libérateur.",
+                    declaration: "Je déclare que Dieu combat toutes les batailles que je lui remets. Je déclare que le Seigneur renverse les projets de l'ennemi contre ma vie.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que toute œuvre des ténèbres dirigée contre moi est renversée par la puissance de Dieu. Je proclame que le Seigneur combat pour ma famille, ma santé, mon travail, mon ministère et ma destinée. Je proclame que les armes de l'ennemi sont sans effet devant le Dieu Tout-Puissant. Je proclame que la victoire du Seigneur se manifeste dans tous les domaines de ma vie.",
+                    priere: "Père céleste, Merci parce que tu combats pour tes enfants. Apprends-moi à demeurer dans la foi lorsque les combats se présentent. Donne-moi un cœur paisible qui s'appuie sur tes promesses. Que toute la gloire te revienne. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de vouloir tout résoudre par mes propres forces. J'apprends à remettre mes combats entre les mains du Seigneur et à marcher dans la paix."
+                },
+                "THÈME 57 — DIEU POURVOIT À TOUS MES BESOINS": {
+                    versets: "Philippiens 4:19 • Matthieu 6:25-34 • Psaume 23:1 • Genèse 22:14",
+                    confession: "Père céleste, Je confesse que tu es Jéhovah-Jiré, le Dieu qui pourvoit. Tu connais chacun de mes besoins avant même que je te les expose. Je crois que tu pourvois à tous mes besoins selon ta richesse avec gloire en Jésus-Christ. Je choisis de te faire confiance.",
+                    declaration: "Je déclare que Dieu prend soin de moi. Je déclare que je ne manquerai d'aucun bien nécessaire à l'accomplissement de sa volonté. Je déclare que mon Père céleste ouvre les bonnes portes en son temps.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que toute crainte du manque quitte ma vie. Je proclame que Dieu ouvre les écluses de sa bénédiction selon sa volonté. Je proclame que toutes les ressources nécessaires à ma mission me seront accordées. Je proclame que le Seigneur est fidèle à chacune de ses promesses.",
+                    priere: "Père céleste, Merci parce que tu prends soin de moi. Apprends-moi à rechercher premièrement ton Royaume et ta justice. Donne-moi un cœur reconnaissant dans l'abondance comme dans l'attente. Que je sois aussi un canal de bénédiction pour les autres. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je passe de l'inquiétude à la confiance. J'apprends à dépendre du Père qui connaît parfaitement tous mes besoins."
+                }
+            },
+            "PARTIE VII — MA MISSION ET MON ESPÉRANCE": {
+                "THÈME 58 — JE SUIS LA LUMIÈRE DU MONDE": {
+                    versets: "Matthieu 5:14-16 • Philippiens 2:15 • Éphésiens 5:8 • Jean 8:12 • Ésaïe 60:1-3",
+                    confession: "Père céleste. Je confesse que, par Jésus-Christ, je suis appelé à être la lumière du monde. Tu m'as fait passer des ténèbres à ton admirable lumière. Je crois que ma vie est appelée à refléter la lumière de Christ. Je veux glorifier ton nom par ma conduite.",
+                    declaration: "Je déclare que la lumière de Jésus brille à travers moi. Je déclare que mes paroles, mes pensées et mes actions glorifient Dieu. Je déclare que là où règnent les ténèbres, Christ se manifeste par ma vie. Je marche dans la lumière du Seigneur.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute obscurité spirituelle recule devant la lumière de Christ en moi. Je proclame que Dieu m'utilise pour éclairer ceux qui sont dans les ténèbres. Je proclame que ma vie attire les hommes vers Jésus-Christ. Je proclame que Dieu est glorifié à travers mon témoignage.",
+                    priere: "Père céleste, Fais de moi une lumière dans ce monde. Que ma vie reflète ton amour, ta sainteté et ta vérité. Donne-moi le courage de témoigner fidèlement de Jésus. Que toute ma vie rende gloire à ton nom. Amen.",
+                    progression: "Je comprends que ma vie n'est pas seulement destinée à être bénie. Elle est appelée à éclairer les autres et à conduire les hommes vers Jésus-Christ."
+                },
+                "THÈME 59 — JE SUIS LE SEL DE LA TERRE": {
+                    versets: "Matthieu 5:13 • Marc 9:50 • Colossiens 4:6 • Philippiens 2:15-16 • Tite 2:7-8",
+                    confession: "Père céleste, Je confesse que tu m'as établi comme le sel de la terre. Par ta grâce, je suis appelé à préserver, à purifier et à donner soif de toi. Je veux vivre d'une manière qui honore ton nom. Que ma vie influence ce monde pour ta gloire.",
+                    declaration: "Je déclare que Dieu m'utilise comme une influence bénéfique. Je déclare que mes paroles communiquent la grâce. Je déclare que ma vie reflète la sainteté de Jésus-Christ. Je déclare que je demeure fidèle à ma vocation.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que ma vie ne perdra pas sa saveur spirituelle. Je proclame que Dieu me garde dans la vérité. Je proclame que mon influence contribuera à faire avancer le Royaume de Dieu.",
+                    priere: "Père céleste, Préserve-moi de toute compromission. Aide-moi à demeurer fidèle à ta Parole. Que ma vie inspire les autres à rechercher Jésus-Christ. Que ton nom soit glorifié à travers mon témoignage. Amen.",
+                    progression: "Je cesse de vivre uniquement pour moi-même. Je comprends que Dieu m'a établi pour influencer ce monde par le caractère de Christ."
+                },
+                "THÈME 60 — JE SUIS AMBASSADEUR DE CHRIST": {
+                    versets: "2 Corinthiens 5:17-21 • Matthieu 28:18-20 • Actes 1:8 • Éphésiens 6:19-20 • 1 Pierre 2:9",
+                    confession: "Père céleste. Je confesse que tu m'as établi ambassadeur de Jésus-Christ. Je représente ton Royaume sur la terre. Tu m'as confié le ministère de la réconciliation afin d'annoncer l'Évangile. Je veux être un témoin fidèle de mon Seigneur.",
+                    declaration: "Je déclare que ma vie représente Jésus-Christ. Je déclare que le Saint-Esprit me donne les paroles justes. Je déclare que je témoigne avec amour, sagesse et puissance. Je déclare que Dieu se sert de moi pour attirer des hommes à Christ.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que toute crainte de témoigner disparaît. Je proclame que le Saint-Esprit me remplit d'assurance et de sagesse. Je proclame que des portes s'ouvrent pour l'annonce de l'Évangile. Je proclame que des vies sont transformées par la puissance de Jésus-Christ à travers mon témoignage.",
+                    priere: "Père céleste, Merci pour l'honneur de représenter ton Royaume. Remplis-moi d'amour pour les âmes perdues. Donne-moi l'audace, la compassion et la sagesse nécessaires pour annoncer fidèlement Jésus-Christ. Que toute ma vie soit un témoignage vivant de ton Évangile. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de considérer la foi comme une expérience uniquement personnelle. Je comprends que Dieu m'envoie comme représentant de son Royaume afin de manifester Jésus-Christ partout où je suis."
+                },
+                "THÈME 61 — JE SUIS APPELÉ À PORTER DU FRUIT": {
+                    versets: "Jean 15:1-8 • Colossiens 1:10 • Matthieu 7:17-20 • Psaume 1:1-3 • Philippiens 1:11",
+                    confession: "Père céleste, Je confesse que tu m'as appelé à porter beaucoup de fruit. Parce que je demeure en Jésus-Christ, le véritable Cep, ta vie coule en moi et produit un fruit qui demeure. Je crois que tu me rends fécond pour ta gloire.",
+                    declaration: "Je déclare que ma vie porte un fruit abondant. Je déclare que mes œuvres glorifient Dieu. Je déclare que le Seigneur me rend utile dans son Royaume. Je déclare que ma vie bénit les générations.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute stérilité spirituelle est brisée. Je proclame que la vie de Christ produit en moi un fruit durable. Je proclame que tout ce que Dieu a planté en moi arrive à maturité. Je proclame que ma vie glorifie le Père.",
+                    priere: "Père céleste. Émonde-moi afin que je porte davantage de fruit. Apprends-moi à demeurer constamment en Jésus-Christ. Que toute ma vie produise des œuvres qui demeurent jusque dans l'éternité. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je ne cherche plus seulement à recevoir des bénédictions. Je désire désormais produire un fruit qui glorifie Dieu et bénit les autres."
+                },
+                "THÈME 62 — JE SUIS APPELÉ À MANIFESTER LA GLOIRE DE DIEU": {
+                    versets: "Ésaïe 60:1-3 • Matthieu 5:16 • Jean 17:22-23 • Romains 8:18-19",
+                    confession: "Père céleste. Je confesse que tu m'as créé pour manifester ta gloire. Par Jésus-Christ, tu me transformes de gloire en gloire. Je crois que ma vie doit révéler ton caractère, ta puissance et ton amour.",
+                    declaration: "Je déclare que la gloire de Dieu se manifeste dans ma vie. Je déclare que Christ est vu à travers mes paroles et mes actions. Je déclare que le Saint-Esprit me transforme chaque jour. Je déclare que toute la gloire revient au Seigneur.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute œuvre qui cherche à ternir le témoignage de Christ dans ma vie est détruite. Je proclame que la lumière de Dieu brille au travers de moi. Je proclame que les œuvres de Dieu sont manifestées dans ma vie. Je proclame que Jésus est glorifié en moi.",
+                    priere: "Père céleste. Transforme-moi à l'image de ton Fils. Que toute ma vie reflète ta gloire. Utilise-moi afin que les hommes te connaissent et te glorifient. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de rechercher ma propre gloire. Je vis désormais afin que Jésus-Christ soit glorifié en toutes choses."
+                },
+                "THÈME 63 — JE SUIS UN ADORATEUR EN ESPRIT ET EN VÉRITÉ": {
+                    versets: "Jean 4:23-24 • Hébreux 13:15 • Psaume 95:1-7 • Psaume 100 • Romains 12:1",
+                    confession: "Père céleste. Je confesse que tu recherches des adorateurs qui t'adorent en esprit et en vérité. Je t'offre ma vie comme un sacrifice vivant. Mon adoration ne dépend pas des circonstances, mais de ta grandeur et de ta fidélité.",
+                    declaration: "Je déclare que mon cœur adore Dieu en tout temps. Je déclare que ma bouche proclame sa louange. Je déclare que toute ma vie est un acte d'adoration. Je déclare que Jésus est le centre de mon existence.",
+                    proclamation: "Au nom de Jésus-Christ, Je proclame que rien ne volera mon adoration. Je proclame que mon cœur demeure attaché au Seigneur. Je proclame que toute idole est renversée dans ma vie. Je proclame que Dieu seul reçoit toute la gloire.",
+                    priere: "Père céleste, Apprends-moi à t'adorer avec un cœur sincère. Que mon adoration soit agréable devant toi. Remplis-moi d'un amour toujours plus profond pour ta présence. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je découvre que l'adoration n'est pas seulement un chant. Toute ma vie devient une offrande agréable à Dieu."
+                },
+                "THÈME 64 — JE MARCHE PAR LA FOI": {
+                    versets: "2 Corinthiens 5:7 • Hébreux 11:1-6 • Romains 10:17 • Marc 11:22-24 • Habacuc 2:4",
+                    confession: "Père céleste, Je confesse que je marche par la foi et non par la vue. Je crois à tes promesses même lorsque je ne vois pas encore leur accomplissement. Ta Parole est le fondement de ma confiance.",
+                    declaration: "Je déclare que ma foi grandit chaque jour. Je déclare que je fais confiance à Dieu en toutes circonstances. Je déclare que les promesses de Dieu dirigent mes décisions. Je déclare que rien n'est impossible à Dieu.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que le doute, la peur et l'incrédulité n'auront pas le dernier mot. Je proclame que ma foi demeure ferme dans la Parole de Dieu. Je proclame que les montagnes s'éloignent devant la puissance du Seigneur. Je proclame que Dieu accomplit tout ce qu'il a promis.",
+                    priere: "Père céleste, Augmente ma foi. Apprends-moi à te faire confiance dans les temps favorables comme dans les épreuves. Que je demeure ferme jusqu'à l'accomplissement de tes promesses. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je cesse de vivre selon ce que voient mes yeux. J'apprends à vivre selon la vérité éternelle de la Parole de Dieu."
+                },
+                "THÈME 65 — RIEN NE PEUT ME SÉPARER DE L'AMOUR DE DIEU": {
+                    versets: "Romains 8:35-39 • Jean 10:27-30 • Jérémie 31:3 • Éphésiens 3:17-19 • Sophonie 3:17",
+                    confession: "Père céleste. Je confesse que rien ne peut me séparer de ton amour manifesté en Jésus-Christ. Ni les épreuves, ni les puissances, ni les circonstances ne peuvent annuler ton amour. Je demeure en sécurité dans ton amour éternel.",
+                    declaration: "Je déclare que je suis profondément aimé de Dieu. Je déclare que son amour chasse toute peur. Je déclare que je demeure dans sa paix. Je déclare que son amour transforme toute ma vie.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que toute accusation de condamnation est réduite au silence. Je proclame que l'amour parfait de Dieu règne dans mon cœur. Je proclame que je demeure ferme dans la grâce de Jésus-Christ. Je proclame que rien ne m'arrachera de la main de mon Père.",
+                    priere: "Père céleste. Merci pour ton amour éternel. Enracine-moi toujours davantage dans cet amour. Que je puisse aimer les autres comme tu m'as aimé. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je passe d'une relation fondée sur la crainte à une relation fondée sur l'amour parfait du Père."
+                },
+                "THÈME 66 — JÉSUS REVIENT, JE VEILLE DANS L'ESPÉRANCE": {
+                    versets: "Jean 14:1-3 • Tite 2:11-13 • 1 Thessaloniciens 4:16-18 • Matthieu 24:42-44 • Apocalypse 22:20",
+                    confession: "Père céleste. Je confesse que Jésus-Christ reviendra comme il l'a promis. Mon espérance est fondée sur son retour glorieux. Je désire vivre chaque jour dans la sainteté, la fidélité et l'attente de son Royaume.",
+                    declaration: "Je déclare que mon espérance est vivante. Je déclare que je veille dans la foi. Je déclare que je demeure prêt à rencontrer mon Seigneur. Je déclare que mon cœur est attaché aux réalités éternelles.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que rien ne détournera mon regard de l'espérance éternelle. Je proclame que je persévérerai jusqu'au retour de mon Sauveur. Je proclame que ma vie sera trouvée fidèle devant lui. Je proclame : « Amen ! Viens, Seigneur Jésus ! »",
+                    priere: "Seigneur Jésus, Merci pour la promesse de ton retour. Garde mon cœur fidèle jusqu'à ce jour. Apprends-moi à vivre dans la vigilance, la sainteté et la joie de ton espérance. Amen.",
+                    progression: "Je cesse de vivre uniquement pour les réalités présentes. Je fixe désormais mes regards sur l'éternité."
+                },
+                "THÈME 67 — JE RÉGNERAI ÉTERNELLEMENT AVEC CHRIST": {
+                    versets: "2 Timothée 2:11-12 • Apocalypse 3:21 • Apocalypse 5:10 • Apocalypse 22:5 • Romains 8:17",
+                    confession: "Père céleste, Je confesse que je suis héritier avec Jésus-Christ. Si je persévère avec lui, je régnerai aussi avec lui. Je crois que mon héritage éternel est réservé dans les cieux.",
+                    declaration: "Je déclare que mon avenir est entre les mains de Dieu. Je déclare que mon héritage est éternel. Je déclare que les souffrances présentes ne sont pas comparables à la gloire à venir. Je déclare que je demeure fidèle jusqu'à la fin.",
+                    proclamation: "Au nom de Jésus-Christ. Je proclame que rien ne pourra me voler l'héritage préparé par mon Père. Je proclame que je persévérerai jusqu'au bout. Je proclame que la couronne de vie m'est réservée par la grâce de Dieu. Je proclame que je régnerai éternellement avec Jésus-Christ.",
+                    priere: "Père céleste, Garde-moi fidèle jusqu'à la fin de ma course. Donne-moi la persévérance de ceux qui aiment ton apparition. Que je termine ma vie en glorifiant ton nom. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je regarde au-delà des difficultés présentes. Je vis avec la certitude de l'héritage éternel préparé par Dieu."
+                },
+                "THÈME 68 — JE VIS POUR LA GLOIRE DE DIEU": {
+                    versets: "1 Corinthiens 10:31 • Colossiens 3:17 • Romains 11:36 • Matthieu 5:16 • Éphésiens 1:11-12",
+                    confession: "Père céleste, Je confesse que toute ma vie t'appartient. Tout ce que je suis, tout ce que je possède et tout ce que j'accomplis trouvent leur source en toi et ont pour but de glorifier ton saint Nom. Je désire vivre chaque jour pour l'honneur de Jésus-Christ.",
+                    declaration: "Je déclare que toute ma vie glorifie Dieu. Je déclare que mon travail, mes paroles, mes pensées, mes relations et mon ministère reflètent la seigneurie de Jésus-Christ. Je déclare que le Saint-Esprit conduit chacun de mes pas. Je déclare que ma vie entière est un témoignage vivant de la grâce de Dieu.",
+                    proclamation: "Au nom puissant de Jésus-Christ, Je proclame que tout ce qui est contraire à la gloire de Dieu est ôté de ma vie. Je proclame que le Seigneur achève en moi son œuvre parfaite. Je proclame que ma vie porte un fruit abondant qui demeure. Je proclame que, jusqu'à mon dernier souffle et dans l'éternité, Jésus-Christ sera glorifié en moi.",
+                    priere: "Père céleste, Merci pour le salut, pour ta grâce et pour toutes tes promesses. Je te consacre à nouveau mon esprit, mon âme et mon corps. Que toute ma vie soit un parfum agréable devant toi. Conduis-moi fidèlement jusqu'au jour où je verrai Jésus face à face. À toi seul soient la gloire, l'honneur, la puissance et l'adoration, maintenant et pour l'éternité. Au nom de Jésus-Christ. Amen.",
+                    progression: "Je comprends que toute ma vie trouve son sens en Jésus-Christ. Je vis désormais chaque jour dans le but de connaître davantage le Seigneur, de le faire connaître et de le glorifier jusqu'à son retour."
+                }
+            }
+        };
+
+        // --------------------------------------------------------------
+        // 2. RÉFÉRENCES DOM
+        // --------------------------------------------------------------
+        const partSelect = document.getElementById('part-select');
+        const themeSelect = document.getElementById('theme-select');
+        const contentArea = document.getElementById('content-area');
+
+        const partKeys = Object.keys(DATA);
+
+        // --------------------------------------------------------------
+        // 3. PEUPLEMENT DES SÉLECTEURS
+        // --------------------------------------------------------------
+        function populateParts() {
+            partSelect.innerHTML = '<option value="">— Choisissez une partie —</option>';
+            partKeys.forEach(part => {
+                const opt = document.createElement('option');
+                opt.value = part;
+                opt.textContent = part;
+                partSelect.appendChild(opt);
+            });
+        }
+
+        function populateThemes(partKey) {
+            themeSelect.disabled = false;
+            themeSelect.innerHTML = '<option value="">Sélectionnez un thème</option>';
+            if (!partKey || !DATA[partKey]) {
+                themeSelect.disabled = true;
+                themeSelect.innerHTML = '<option value="">Sélectionnez d\'abord une partie</option>';
+                return;
+            }
+            const themes = Object.keys(DATA[partKey]);
+            themes.forEach(theme => {
+                const opt = document.createElement('option');
+                opt.value = theme;
+                opt.textContent = theme;
+                themeSelect.appendChild(opt);
+            });
+        }
+
+        // --------------------------------------------------------------
+        // 4. AFFICHAGE DU CONTENU
+        // --------------------------------------------------------------
+        function renderContent(partKey, themeKey) {
+            if (!partKey || !themeKey || !DATA[partKey] || !DATA[partKey][themeKey]) {
+                contentArea.innerHTML = `
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#597d97" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M9 9h6v6H9z" />
+                            <path d="M9 15l2-2 2 2" />
+                            <path d="M9 9l2 2 2-2" />
+                        </svg>
+                        <h3>Sélectionnez une partie et un thème</h3>
+                        <p style="margin-top:8px; max-width:360px; margin-left:auto; margin-right:auto;">Choisissez une partie dans le menu déroulant, puis un thème pour afficher les confessions, proclamations et prières.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const data = DATA[partKey][themeKey];
+            const html = `
+                <div class="content-section">
+                    <div class="theme-title">${themeKey}</div>
+                    <div class="theme-part">${partKey}</div>
+
+                    <h3>📖 Références bibliques</h3>
+                    <div class="verses"><strong>${data.versets}</strong></div>
+
+                    <h3>🙌 Confession de foi</h3>
+                    <div class="block-text">${data.confession}</div>
+
+                    <h3>📢 Déclaration spirituelle</h3>
+                    <div class="block-text">${data.declaration}</div>
+
+                    <h3>⚔️ Proclamation d'autorité</h3>
+                    <div class="block-text">${data.proclamation}</div>
+
+                    <h3>🕊️ Prière</h3>
+                    <div class="prayer-box">${data.priere}</div>
+
+                    <h3>📈 Progression spirituelle</h3>
+                    <div class="spiritual-progress">${data.progression}</div>
+                </div>
+            `;
+
+            contentArea.innerHTML = html;
+            // petite animation
+            contentArea.style.animation = 'none';
+            requestAnimationFrame(() => {
+                contentArea.style.animation = 'fadeIn 0.25s ease-out';
+            });
+        }
+
+        // --------------------------------------------------------------
+        // 5. GESTIONNAIRES D'ÉVÉNEMENTS
+        // --------------------------------------------------------------
+        partSelect.addEventListener('change', function() {
+            const part = this.value;
+            populateThemes(part);
+            // on réinitialise le contenu si pas de partie ou de thème
+            if (!part) {
+                renderContent(null, null);
+            } else {
+                // on sélectionne le premier thème par défaut ?
+                const themes = Object.keys(DATA[part] || {});
+                if (themes.length > 0) {
+                    themeSelect.value = themes[0];
+                    renderContent(part, themes[0]);
+                } else {
+                    renderContent(part, null);
+                }
+            }
+        });
+
+        themeSelect.addEventListener('change', function() {
+            const part = partSelect.value;
+            const theme = this.value;
+            if (part && theme) {
+                renderContent(part, theme);
+            } else {
+                renderContent(part, null);
+            }
+        });
+
+        // --------------------------------------------------------------
+        // 6. INITIALISATION
+        // --------------------------------------------------------------
+        populateParts();
+        // On laisse l'état vide (aucune sélection)
+        renderContent(null, null);
+
+        // Petite astuce : si l'utilisateur choisit une partie, on charge le premier thème auto.
+        // On peut aussi laisser l'utilisateur choisir explicitement.
+        // On va ajouter un comportement "intelligent" : quand on change de partie,
+        // on sélectionne le premier thème automatiquement (déjà fait ci-dessus).
+        // Si l'utilisateur veut choisir manuellement, il peut.
+
+    })();
+</script>
+
+</body>
+</html>
