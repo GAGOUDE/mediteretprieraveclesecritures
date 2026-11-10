@@ -1,4 +1,4 @@
-Live : https://gagoude.github.io/mediteretprieravecles-critures/
+Live : https://gagoude.github.io/mediteretprieraveclesecritures/
 
 
 "Prier avec les écritures" est un blog de prière interactif qui permet aux utilisateurs de méditer et de proclamer la Parole de Dieu sans avoir à créer de compte.
